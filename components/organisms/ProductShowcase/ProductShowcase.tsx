@@ -1,23 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Button from "@/components/atoms/Button/Button";
 import Badge from "@/components/atoms/Badge/Badge";
-import { 
-  Instagram, 
-  Twitter, 
-  Youtube, 
-  Facebook, 
-  Twitch, 
+import {
+  Instagram,
+  Twitter,
+  Youtube,
+  Facebook,
+  Twitch,
   Music,
   Star,
   Shield,
   Zap,
-  CheckCircle
+  CheckCircle,
+  Linkedin
 } from "lucide-react";
+import {
+  FaTelegram,
+  FaWhatsapp,
+  FaSnapchatGhost,
+  FaReddit,
+  FaVk,
+  FaTiktok
+} from "react-icons/fa";
+import { SiTelegram } from "react-icons/si";
 
 const ProductShowcase: React.FC = () => {
-  const socialPlatforms = [
+  const [visiblePlatforms, setVisiblePlatforms] = useState(6);
+  const [isLoading, setIsLoading] = useState(false);
+  const loadMoreRef = useRef(null);
+  const isLoadMoreInView = useInView(loadMoreRef);
+
+  const allSocialPlatforms = [
     {
       name: "Instagram",
       icon: Instagram,
@@ -51,6 +67,14 @@ const ProductShowcase: React.FC = () => {
       features: ["Business Pages", "Ad Accounts", "Page Likes"]
     },
     {
+      name: "TikTok",
+      icon: FaTiktok,
+      color: "from-pink-500 to-red-500",
+      accounts: "20K+",
+      price: "Starting from $34",
+      features: ["Creator Fund", "Viral Content", "Engagement"]
+    },
+    {
       name: "Twitch",
       icon: Twitch,
       color: "from-purple-600 to-purple-700",
@@ -59,14 +83,71 @@ const ProductShowcase: React.FC = () => {
       features: ["Partner Status", "Followers", "Stream Setup"]
     },
     {
-      name: "TikTok",
-      icon: Music,
-      color: "from-pink-500 to-red-500",
-      accounts: "20K+",
-      price: "Starting from $34",
-      features: ["Creator Fund", "Viral Content", "Engagement"]
+      name: "LinkedIn",
+      icon: Linkedin,
+      color: "from-blue-500 to-blue-600",
+      accounts: "12K+",
+      price: "Starting from $45",
+      features: ["Premium Accounts", "Business Network", "Professional Content"]
+    },
+    {
+      name: "VKontakte",
+      icon: FaVk,
+      color: "from-blue-500 to-blue-600",
+      accounts: "18K+",
+      price: "Starting from $22",
+      features: ["Russian Market", "Active Community", "High Engagement"]
+    },
+    {
+      name: "Telegram",
+      icon: FaTelegram,
+      color: "from-blue-400 to-blue-500",
+      accounts: "15K+",
+      price: "Starting from $27",
+      features: ["Premium Features", "Channel Access", "Bot Integration"]
+    },
+    {
+      name: "WhatsApp",
+      icon: FaWhatsapp,
+      color: "from-green-500 to-green-600",
+      accounts: "10K+",
+      price: "Starting from $35",
+      features: ["Business Accounts", "Verified Status", "API Access"]
+    },
+    {
+      name: "Snapchat",
+      icon: FaSnapchatGhost,
+      color: "from-yellow-400 to-yellow-500",
+      accounts: "9K+",
+      price: "Starting from $32",
+      features: ["Creator Accounts", "Snap Ads", "Story Features"]
+    },
+    {
+      name: "Reddit",
+      icon: FaReddit,
+      color: "from-orange-500 to-red-500",
+      accounts: "7K+",
+      price: "Starting from $28",
+      features: ["High Karma", "Aged Accounts", "Subreddit Access"]
     }
   ];
+
+  const loadMorePlatforms = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setVisiblePlatforms(prev => Math.min(prev + 3, allSocialPlatforms.length));
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  // Auto-load more when scroll reaches the load more section
+  React.useEffect(() => {
+    if (isLoadMoreInView && visiblePlatforms < allSocialPlatforms.length && !isLoading) {
+      loadMorePlatforms();
+    }
+  }, [isLoadMoreInView, visiblePlatforms, isLoading]);
+
+  const socialPlatforms = allSocialPlatforms.slice(0, visiblePlatforms);
 
   return (
     <section className="py-24 bg-gradient-to-b from-white via-cyan-50/20 to-blue-50/30">
@@ -110,27 +191,42 @@ const ProductShowcase: React.FC = () => {
           </div>
         </div>
 
-        {/* Enhanced Platform Grid */}
+        {/* Enhanced Platform Grid with Framer Motion */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {socialPlatforms.map((platform, index) => {
             const IconComponent = platform.icon;
             return (
-              <div
+              <motion.div
                 key={platform.name}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: "easeOut"
+                }}
+                whileHover={{
+                  y: -12,
+                  scale: 1.02,
+                  transition: { duration: 0.3 }
+                }}
                 className="group relative"
-                style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Enhanced Card with Better Shadow */}
-                <div className="bg-white rounded-3xl p-8 transition-all duration-500 group-hover:-translate-y-3 border border-gray-100/50"
+                <div className="bg-white rounded-3xl p-8 transition-all duration-500 border border-gray-100/50"
                      style={{
                        boxShadow: '0 4px 20px rgba(6, 182, 212, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)'
                      }}>
                   
                   {/* Enhanced Header */}
                   <div className="flex items-center justify-between mb-8">
-                    <div className={`w-16 h-16 bg-gradient-to-r ${platform.color} rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <motion.div
+                      className={`w-16 h-16 bg-gradient-to-r ${platform.color} rounded-2xl flex items-center justify-center text-white shadow-lg`}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
+                    >
                       <IconComponent className="w-8 h-8" />
-                    </div>
+                    </motion.div>
                     <div className="text-right">
                       <div className="text-sm text-gray-500 mb-1">Available</div>
                       <div className="text-lg font-bold" style={{ color: '#072C48' }}>
@@ -155,33 +251,80 @@ const ProductShowcase: React.FC = () => {
                   {/* Enhanced Features */}
                   <div className="space-y-3 mb-8">
                     {platform.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center gap-3 text-gray-700">
+                      <motion.div
+                        key={featureIndex}
+                        className="flex items-center gap-3 text-gray-700"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 + featureIndex * 0.1 }}
+                      >
                         <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
                           <CheckCircle className="w-3 h-3 text-green-600" />
                         </div>
                         <span className="text-sm font-medium">{feature}</span>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
 
                   {/* CTA Button */}
-                  <Button
-                    className="w-full text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 group-hover:shadow-lg"
-                    style={{ backgroundColor: '#072C48' }}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    View {platform.name} Accounts
-                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Button>
+                    <Button
+                      className="w-full text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 group-hover:shadow-lg"
+                      style={{ backgroundColor: '#072C48' }}
+                    >
+                      View {platform.name} Accounts
+                      <motion.svg
+                        className="w-4 h-4 ml-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        whileHover={{ x: 4 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </motion.svg>
+                    </Button>
+                  </motion.div>
                 </div>
 
                 {/* Subtle Glow Effect */}
                 <div className={`absolute inset-0 bg-gradient-to-r ${platform.color} rounded-3xl opacity-0 group-hover:opacity-5 transition-opacity duration-500 -z-10 blur-xl`}></div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
+
+        {/* Loading More Indicator */}
+        {visiblePlatforms < allSocialPlatforms.length && (
+          <div ref={loadMoreRef} className="flex justify-center mb-20">
+            {isLoading ? (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex items-center gap-3 text-cyan-600"
+              >
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  className="w-6 h-6 border-2 border-cyan-600 border-t-transparent rounded-full"
+                />
+                <span className="text-lg font-medium">Loading more platforms...</span>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center"
+              >
+                <div className="w-2 h-2 bg-cyan-500 rounded-full mx-auto mb-2"></div>
+                <p className="text-gray-500 text-sm">Scroll down to load more platforms</p>
+              </motion.div>
+            )}
+          </div>
+        )}
 
         {/* Light & Elegant Why Choose Us Section */}
         <div className="relative py-24 bg-gradient-to-b from-white via-cyan-50/30 to-blue-50/40">

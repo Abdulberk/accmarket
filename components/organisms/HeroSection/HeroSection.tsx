@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 import Button from "@/components/atoms/Button/Button";
 import Icon from "@/components/atoms/Icon/Icon";
 import Badge from "@/components/atoms/Badge/Badge";
@@ -12,6 +15,9 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
+  const [visiblePlatforms, setVisiblePlatforms] = useState(8);
+  const [isLoading, setIsLoading] = useState(false);
+  
   const stats = [
     { label: "Active Accounts", value: "50K+", icon: "user" as const },
     { label: "Happy Customers", value: "10K+", icon: "star" as const },
@@ -19,12 +25,69 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
     { label: "Platforms", value: "15+", icon: "check" as const }
   ];
 
-  const platforms = [
-    { name: "Facebook", icon: "facebook", color: "bg-blue-500" },
-    { name: "Instagram", icon: "instagram", color: "bg-gradient-to-r from-purple-500 to-pink-500" },
-    { name: "Twitter", icon: "twitter", color: "bg-sky-500" },
-    { name: "TikTok", icon: "user", color: "bg-black" }
+  const allPlatforms = [
+    { name: "Instagram", icon: "instagram", color: "#E4405F", bgColor: "#E4405F20" },
+    { name: "Twitter", icon: "twitter", color: "#1DA1F2", bgColor: "#1DA1F220" },
+    { name: "YouTube", icon: "youtube", color: "#FF0000", bgColor: "#FF000020" },
+    { name: "Facebook", icon: "facebook", color: "#1877F2", bgColor: "#1877F220" },
+    { name: "TikTok", icon: "tiktok", color: "#000000", bgColor: "#00000020" },
+    { name: "Telegram", icon: "telegram", color: "#0088CC", bgColor: "#0088CC20" },
+    { name: "LinkedIn", icon: "linkedin", color: "#0A66C2", bgColor: "#0A66C220" },
+    { name: "Reddit", icon: "reddit", color: "#FF4500", bgColor: "#FF450020" },
+    { name: "VKontakte", icon: "vk", color: "#4C75A3", bgColor: "#4C75A320", isCustom: true },
+    { name: "WhatsApp", icon: "phone", color: "#25D366", bgColor: "#25D36620" },
+    { name: "Discord", icon: "discord", color: "#5865F2", bgColor: "#5865F220", isCustom: true },
+    { name: "Snapchat", icon: "snapchat", color: "#FFFC00", bgColor: "#FFFC0020", isCustom: true },
+    { name: "Pinterest", icon: "pinterest", color: "#BD081C", bgColor: "#BD081C20", isCustom: true },
+    { name: "Twitch", icon: "twitch", color: "#9146FF", bgColor: "#9146FF20", isCustom: true },
+    { name: "OnlyFans", icon: "onlyfans", color: "#00AFF0", bgColor: "#00AFF020", isCustom: true },
+    { name: "Spotify", icon: "spotify", color: "#1DB954", bgColor: "#1DB95420", isCustom: true }
   ];
+
+  const loadMorePlatforms = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setVisiblePlatforms(prev => Math.min(prev + 4, allPlatforms.length));
+      setIsLoading(false);
+    }, 800);
+  };
+
+  const renderPlatformIcon = (platform: typeof allPlatforms[0]) => {
+    if (platform.isCustom) {
+      const getCustomIcon = (name: string) => {
+        switch (name) {
+          case "VKontakte": return "VK";
+          case "Discord": return "D";
+          case "Snapchat": return "S";
+          case "Pinterest": return "P";
+          case "Twitch": return "T";
+          case "OnlyFans": return "OF";
+          case "Spotify": return "♪";
+          default: return name.charAt(0);
+        }
+      };
+      
+      return (
+        <div
+          className="w-5 sm:w-6 lg:w-7 h-5 sm:h-6 lg:h-7 rounded flex items-center justify-center group-hover:scale-110 transition-transform"
+          style={{ backgroundColor: platform.color }}
+        >
+          <span className="text-white font-bold text-xs sm:text-sm lg:text-base">
+            {getCustomIcon(platform.name)}
+          </span>
+        </div>
+      );
+    }
+    
+    return (
+      <Icon
+        name={platform.icon as "instagram" | "twitter" | "youtube" | "facebook" | "tiktok" | "telegram" | "linkedin" | "reddit" | "phone"}
+        size="md"
+        className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7 group-hover:scale-110 transition-transform"
+        style={{ color: platform.color }}
+      />
+    );
+  };
 
   return (
     <section className={cn("relative overflow-hidden", className)}>
@@ -135,33 +198,62 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
               Providing reliable services for best platforms
             </p>
             
-            <div className="flex flex-wrap gap-3 sm:gap-4 lg:gap-6 justify-center max-w-2xl lg:max-w-3xl mx-auto">
-              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #E4405F20' }}>
-                <Icon name="instagram" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#E4405F' }} />
-              </div>
-              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1DA1F220' }}>
-                <Icon name="twitter" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#1DA1F2' }} />
-              </div>
-              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF000020' }}>
-                <Icon name="youtube" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#FF0000' }} />
-              </div>
-              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1877F220' }}>
-                <Icon name="facebook" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#1877F2' }} />
-              </div>
-              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #00000020' }}>
-                <Icon name="tiktok" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#000000' }} />
-              </div>
-              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0088CC20' }}>
-                <Icon name="telegram" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#0088CC' }} />
-              </div>
-              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0A66C220' }}>
-                <Icon name="linkedin" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#0A66C2' }} />
-              </div>
-              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF450020' }}>
-                <Icon name="reddit" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#FF4500' }} />
-              </div>
-              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg bg-gray-100 text-gray-400">
-                <span className="text-base sm:text-lg lg:text-xl font-bold">•••</span>
+            <div className="flex flex-wrap gap-3 sm:gap-4 lg:gap-6 justify-center max-w-4xl lg:max-w-5xl mx-auto">
+              {allPlatforms.slice(0, visiblePlatforms).map((platform, index) => (
+                <motion.div
+                  key={platform.name}
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.1,
+                    ease: "easeOut"
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -4,
+                    transition: { duration: 0.2 }
+                  }}
+                  className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg bg-white cursor-pointer group"
+                  style={{ boxShadow: `0 4px 20px ${platform.bgColor}` }}
+                >
+                  {renderPlatformIcon(platform)}
+                </motion.div>
+              ))}
+              
+              {/* Load More Button */}
+              {visiblePlatforms < allPlatforms.length && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={loadMorePlatforms}
+                  className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all bg-gradient-to-br from-gray-50 to-gray-100 cursor-pointer group border-2 border-dashed border-gray-300 hover:border-cyan-400"
+                >
+                  {isLoading ? (
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      className="w-4 h-4 border-2 border-cyan-500 border-t-transparent rounded-full"
+                    />
+                  ) : (
+                    <span className="text-base sm:text-lg lg:text-xl font-bold text-gray-400 group-hover:text-cyan-500 transition-colors">+</span>
+                  )}
+                </motion.div>
+              )}
+            </div>
+            
+            {/* Platform Stats */}
+            <div className="text-center mt-6 sm:mt-8">
+              <p className="text-xs sm:text-sm text-gray-500 mb-2">
+                Supporting <span className="font-semibold text-cyan-600">15+</span> major platforms
+              </p>
+              <div className="flex justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-400">
+                <span>• Instant Delivery</span>
+                <span>• 24/7 Support</span>
+                <span>• Money Back Guarantee</span>
               </div>
             </div>
           </div>

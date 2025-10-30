@@ -1,3 +1,4 @@
+export { default as TopBar } from './TopBar/TopBar';
 export { default as Header } from './Header/Header';
 export { default as HeroSection } from './HeroSection/HeroSection';
 export { default as ProductShowcase } from './ProductShowcase/ProductShowcase';
