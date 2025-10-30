@@ -292,78 +292,101 @@ const ProductShowcase: React.FC = () => {
                 }}
                 className="group relative"
               >
-                {/* Enhanced Card with Better Shadow */}
-                <div className="bg-white rounded-xl p-4 transition-all duration-500 border border-gray-100/50"
+                {/* Modern Minimal Card */}
+                <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 transition-all duration-500 border border-gray-100/80 hover:border-gray-200/80 group-hover:shadow-[0_8px_40px_rgba(7,44,72,0.08)] hover:-translate-y-1"
                      style={{
-                       boxShadow: '0 2px 10px rgba(6, 182, 212, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03)'
+                       boxShadow: '0 1px 3px rgba(7, 44, 72, 0.04)'
                      }}>
                   
-                  {/* Compact Header */}
-                  <div className="flex flex-col items-center text-center mb-4">
+                  {/* Clean Header with Icon */}
+                  <div className="flex items-center justify-between mb-6">
                     <motion.div
-                      className={`w-12 h-12 bg-gradient-to-r ${platform.color} rounded-xl flex items-center justify-center text-white shadow-md mb-3`}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.3 }}
+                      className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center group-hover:bg-gray-100 transition-colors duration-300"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
                     >
-                      <IconComponent className="w-6 h-6" />
+                      <IconComponent
+                        className="w-7 h-7 transition-colors duration-300"
+                        style={{
+                          color: platform.color.includes('purple') ? '#8B5CF6' :
+                                 platform.color.includes('blue') ? '#3B82F6' :
+                                 platform.color.includes('red') ? '#EF4444' :
+                                 platform.color.includes('green') ? '#10B981' :
+                                 platform.color.includes('yellow') ? '#F59E0B' :
+                                 platform.color.includes('pink') ? '#EC4899' :
+                                 platform.color.includes('orange') ? '#F97316' :
+                                 platform.color.includes('indigo') ? '#6366F1' :
+                                 '#072C48'
+                        }}
+                      />
                     </motion.div>
-                    <div className="text-xs text-gray-500 mb-1">{platform.accounts}</div>
+                    <div className="text-right">
+                      <div className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">
+                        Available
+                      </div>
+                      <div className="text-sm font-semibold" style={{ color: '#072C48' }}>
+                        {platform.accounts}
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Compact Platform Info */}
-                  <div className="mb-4 text-center">
-                    <h3 className="text-lg font-semibold mb-1 truncate" style={{ color: '#072C48' }}>
+                  {/* Platform Name & Price */}
+                  <div className="mb-6">
+                    <h3 className="text-xl font-semibold mb-2" style={{ color: '#072C48' }}>
                       {platform.name}
                     </h3>
-                    <p className="text-sm font-bold mb-2" style={{ color: '#072C48' }}>
-                      {platform.price}
-                    </p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-2xl font-bold" style={{ color: '#072C48' }}>
+                        {platform.price.replace('From ', '')}
+                      </span>
+                      <span className="text-sm text-gray-500">starting from</span>
+                    </div>
                   </div>
 
-                  {/* Compact Features - Show all */}
-                  <div className="space-y-1 mb-4">
+                  {/* Clean Features List */}
+                  <div className="space-y-3 mb-8">
                     {platform.features.map((feature, featureIndex) => (
                       <div
                         key={featureIndex}
-                        className="flex items-center gap-2 text-gray-600"
+                        className="flex items-start gap-3"
                       >
-                        <CheckCircle className="w-3 h-3 text-green-600 flex-shrink-0" />
-                        <span className="text-xs truncate">{feature}</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-2 flex-shrink-0"></div>
+                        <span className="text-sm text-gray-600 leading-relaxed">{feature}</span>
                       </div>
                     ))}
                   </div>
 
-                  {/* Compact CTA Button */}
+                  {/* Minimal CTA Button */}
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
                   >
                     <Button
-                      className="w-full font-medium py-2 px-3 rounded-lg text-sm transition-all duration-300 border-2"
+                      className="w-full font-medium py-3 px-4 rounded-xl text-sm transition-all duration-300 group/btn"
                       style={{
-                        color: '#072C48',
-                        borderColor: '#072C48',
-                        backgroundColor: 'transparent'
+                        backgroundColor: '#072C48',
+                        color: 'white',
+                        border: 'none'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#072C48';
-                        e.currentTarget.style.color = 'white';
+                        e.currentTarget.style.backgroundColor = '#0A3A56';
+                        e.currentTarget.style.transform = 'translateY(-1px)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'transparent';
-                        e.currentTarget.style.color = '#072C48';
+                        e.currentTarget.style.backgroundColor = '#072C48';
+                        e.currentTarget.style.transform = 'translateY(0px)';
                       }}
                     >
-                      <span className="flex items-center gap-1">
-                        View All
-                        <ArrowRight className="w-3 h-3" />
+                      <span className="flex items-center justify-center gap-2">
+                        View Details
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
                       </span>
                     </Button>
                   </motion.div>
                 </div>
 
-                {/* Subtle Glow Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${platform.color} rounded-3xl opacity-0 group-hover:opacity-5 transition-opacity duration-500 -z-10 blur-xl`}></div>
+                {/* Subtle Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/50 to-blue-50/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
               </motion.div>
             );
           })}
