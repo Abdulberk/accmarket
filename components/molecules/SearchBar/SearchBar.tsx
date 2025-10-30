@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Input, Button, Icon } from '@/components/atoms';
+import Input from '@/components/atoms/Input/Input';
+import Button from '@/components/atoms/Button/Button';
+import Icon from '@/components/atoms/Icon/Icon';
 import { cn } from '@/lib/utils';
 
 interface SearchBarProps {
@@ -11,8 +13,8 @@ interface SearchBarProps {
   showFilters?: boolean;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ 
-  placeholder = "Search accounts...", 
+const SearchBar: React.FC<SearchBarProps> = ({
+  placeholder = "Search...",
   onSearch,
   className,
   showFilters = false
@@ -21,41 +23,35 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch?.(query);
+    if (onSearch && query.trim()) {
+      onSearch(query.trim());
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
   };
 
   return (
-    <form onSubmit={handleSubmit} className={cn("flex items-center gap-2", className)}>
-      <div className="flex-1 relative">
+    <form onSubmit={handleSubmit} className={cn("relative", className)}>
+      <div className="relative">
         <Input
           type="text"
           placeholder={placeholder}
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          leftIcon={<Icon name="search" size="sm" />}
+          onChange={handleInputChange}
           className="pr-12"
+          leftIcon={<Icon name="search" size="sm" />}
         />
-        {query && (
-          <button
-            type="button"
-            onClick={() => setQuery('')}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-          >
-            <Icon name="close" size="sm" />
-          </button>
-        )}
-      </div>
-      
-      <Button type="submit" size="md">
-        Search
-      </Button>
-      
-      {showFilters && (
-        <Button variant="outline" size="md">
-          <Icon name="menu" size="sm" />
-          Filters
+        <Button
+          type="submit"
+          size="sm"
+          className="absolute right-1 top-1/2 -translate-y-1/2 h-8 px-3"
+          disabled={!query.trim()}
+        >
+          <Icon name="search" size="sm" />
         </Button>
-      )}
+      </div>
     </form>
   );
 };

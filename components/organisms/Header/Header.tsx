@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button, Icon } from '@/components/atoms';
-import { Navigation, SearchBar } from '@/components/molecules';
+import Button from '@/components/atoms/Button/Button';
+import Icon from '@/components/atoms/Icon/Icon';
+import Navigation from '@/components/molecules/Navigation/Navigation';
+import SearchBar from '@/components/molecules/SearchBar/SearchBar';
 import { cn } from '@/lib/utils';
 
 interface HeaderProps {

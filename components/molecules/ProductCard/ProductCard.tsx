@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Badge, Icon } from '@/components/atoms';
-import { cn, formatPrice } from '@/lib/utils';
+import { Button, Badge, Icon } from '@/components';
+import { cn } from '@/lib/utils';
+
 
 interface ProductCardProps {
   id: string;
@@ -18,6 +19,13 @@ interface ProductCardProps {
   className?: string;
   onBuyClick?: (id: string) => void;
 }
+
+const formatPrice = (price: number): string => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(price);
+};
 
 const ProductCard: React.FC<ProductCardProps> = ({
   id,

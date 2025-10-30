@@ -1,40 +1,45 @@
 import React from 'react';
+import { Badge as ShadcnBadge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
-interface BadgeProps {
-  children: React.ReactNode;
-  variant?: 'default' | 'success' | 'warning' | 'danger' | 'info' | 'outline';
+interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: 'default' | 'secondary' | 'destructive' | 'outline' | 'success' | 'warning' | 'danger' | 'info';
   size?: 'sm' | 'md' | 'lg';
-  className?: string;
 }
 
 const Badge: React.FC<BadgeProps> = ({ 
   children, 
   variant = 'default', 
   size = 'md', 
-  className 
+  className,
+  ...props 
 }) => {
-  const baseStyles = 'inline-flex items-center font-medium rounded-full';
-  
-  const variants = {
-    default: 'bg-gray-100 text-gray-800',
-    success: 'bg-green-100 text-green-800',
-    warning: 'bg-yellow-100 text-yellow-800',
-    danger: 'bg-red-100 text-red-800',
-    info: 'bg-blue-100 text-blue-800',
-    outline: 'border border-gray-300 text-gray-700 bg-transparent'
-  };
-  
-  const sizes = {
-    sm: 'px-2 py-0.5 text-xs',
-    md: 'px-2.5 py-0.5 text-sm',
-    lg: 'px-3 py-1 text-sm'
-  };
+  // Map custom variants to shadcn variants
+  const mappedVariant = variant === 'success' ? 'secondary' : 
+                        variant === 'warning' ? 'secondary' : 
+                        variant === 'danger' ? 'destructive' : 
+                        variant === 'info' ? 'secondary' : variant;
+
+  // Custom styling for variants and sizes
+  const customClassName = cn(
+    // Custom variant styles
+    variant === 'success' && 'bg-green-100 text-green-800 hover:bg-green-200',
+    variant === 'warning' && 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200',
+    variant === 'info' && 'bg-blue-100 text-blue-800 hover:bg-blue-200',
+    // Size styles
+    size === 'sm' && 'px-2 py-0.5 text-xs',
+    size === 'lg' && 'px-3 py-1 text-sm',
+    className
+  );
 
   return (
-    <span className={cn(baseStyles, variants[variant], sizes[size], className)}>
+    <ShadcnBadge 
+      variant={mappedVariant} 
+      className={customClassName}
+      {...props}
+    >
       {children}
-    </span>
+    </ShadcnBadge>
   );
 };
 

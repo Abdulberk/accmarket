@@ -1,192 +1,184 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Button, Badge } from '@/components/atoms';
-import { ProductCard } from '@/components/molecules';
-import { cn } from '@/lib/utils';
+import React from 'react';
+import Button from '@/components/atoms/Button/Button';
+import Badge from '@/components/atoms/Badge/Badge';
+import {
+  Instagram,
+  Twitter,
+  Youtube,
+  Facebook,
+  Twitch,
+  Music,
+  Star,
+  Shield,
+  Zap
+} from 'lucide-react';
 
-interface ProductShowcaseProps {
-  className?: string;
-}
-
-const ProductShowcase: React.FC<ProductShowcaseProps> = ({ className }) => {
-  const [activeCategory, setActiveCategory] = useState('all');
-
-  const categories = [
-    { id: 'all', label: 'All Accounts', count: 1250 },
-    { id: 'facebook', label: 'Facebook', count: 450 },
-    { id: 'instagram', label: 'Instagram', count: 380 },
-    { id: 'twitter', label: 'Twitter', count: 220 },
-    { id: 'tiktok', label: 'TikTok', count: 200 }
-  ];
-
-  const mockProducts = [
+const ProductShowcase: React.FC = () => {
+  const socialPlatforms = [
     {
-      id: '1',
-      title: 'Premium Facebook Business Account',
-      description: 'Verified business account with 10K+ followers, complete profile setup, and business manager access.',
-      price: 89.99,
-      originalPrice: 129.99,
-      stock: 45,
-      rating: 4.9,
-      reviewCount: 234,
-      platform: 'facebook' as const,
-      features: ['Verified', 'Business Manager', '10K+ Followers', 'Complete Profile'],
-      isPopular: true
+      name: 'Instagram',
+      icon: Instagram,
+      color: 'bg-gradient-to-r from-purple-500 to-pink-500',
+      accounts: '50K+',
+      price: 'Starting from $29',
+      features: ['Verified Accounts', 'High Engagement', 'Real Followers']
     },
     {
-      id: '2',
-      title: 'Instagram Creator Account',
-      description: 'High-engagement creator account with authentic followers and verified badge.',
-      price: 149.99,
-      stock: 23,
-      rating: 4.8,
-      reviewCount: 189,
-      platform: 'instagram' as const,
-      features: ['Creator Badge', '25K+ Followers', 'High Engagement', 'Authentic'],
-      isNew: true
+      name: 'Twitter',
+      icon: Twitter,
+      color: 'bg-gradient-to-r from-blue-400 to-blue-600',
+      accounts: '25K+',
+      price: 'Starting from $19',
+      features: ['Blue Verified', 'Active Users', 'Quality Content']
     },
     {
-      id: '3',
-      title: 'Twitter Blue Verified Account',
-      description: 'Blue verified Twitter account with established presence and active community.',
-      price: 199.99,
-      stock: 12,
-      rating: 4.7,
-      reviewCount: 156,
-      platform: 'twitter' as const,
-      features: ['Blue Verified', '15K+ Followers', 'Active Community', 'Established']
+      name: 'YouTube',
+      icon: Youtube,
+      color: 'bg-gradient-to-r from-red-500 to-red-600',
+      accounts: '15K+',
+      price: 'Starting from $49',
+      features: ['Monetized Channels', 'Subscriber Base', 'Content Library']
     },
     {
-      id: '4',
-      title: 'TikTok Creator Fund Account',
-      description: 'Monetized TikTok account eligible for creator fund with viral content history.',
-      price: 299.99,
-      stock: 8,
-      rating: 4.9,
-      reviewCount: 98,
-      platform: 'tiktok' as const,
-      features: ['Creator Fund', '100K+ Followers', 'Viral Content', 'Monetized'],
-      isPopular: true
+      name: 'Facebook',
+      icon: Facebook,
+      color: 'bg-gradient-to-r from-blue-600 to-blue-700',
+      accounts: '30K+',
+      price: 'Starting from $24',
+      features: ['Business Pages', 'Ad Accounts', 'Page Likes']
     },
     {
-      id: '5',
-      title: 'Facebook Page with Ads Account',
-      description: 'Business page with connected ads account, perfect for marketing campaigns.',
-      price: 179.99,
-      stock: 31,
-      rating: 4.6,
-      reviewCount: 267,
-      platform: 'facebook' as const,
-      features: ['Ads Account', 'Business Page', '50K+ Likes', 'Marketing Ready']
+      name: 'Twitch',
+      icon: Twitch,
+      color: 'bg-gradient-to-r from-purple-600 to-purple-700',
+      accounts: '8K+',
+      price: 'Starting from $39',
+      features: ['Partner Status', 'Followers', 'Stream Setup']
     },
     {
-      id: '6',
-      title: 'Instagram Influencer Account',
-      description: 'Lifestyle influencer account with high engagement rate and brand partnerships.',
-      price: 399.99,
-      stock: 5,
-      rating: 5.0,
-      reviewCount: 78,
-      platform: 'instagram' as const,
-      features: ['Influencer', '100K+ Followers', 'Brand Partnerships', 'High Engagement'],
-      isNew: true,
-      isPopular: true
+      name: 'TikTok',
+      icon: Music,
+      color: 'bg-gradient-to-r from-pink-500 to-red-500',
+      accounts: '20K+',
+      price: 'Starting from $34',
+      features: ['Creator Fund', 'Viral Content', 'Engagement']
     }
   ];
 
-  const filteredProducts = activeCategory === 'all' 
-    ? mockProducts 
-    : mockProducts.filter(product => product.platform === activeCategory);
-
   return (
-    <section className={cn("py-20 bg-white", className)}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <Badge variant="info" size="lg" className="mb-4">
-            🔥 Featured Accounts
-          </Badge>
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <Badge variant="secondary" className="mb-4">
             Premium Social Media Accounts
+          </Badge>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Choose Your Platform
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Hand-picked, verified accounts ready for immediate use. All accounts come with 
-            lifetime support and money-back guarantee.
+            High-quality, verified social media accounts across all major platforms. 
+            Each account comes with our guarantee and 24/7 support.
           </p>
         </div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={cn(
-                "px-6 py-3 rounded-xl font-medium transition-all duration-200 flex items-center gap-2",
-                activeCategory === category.id
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              )}
-            >
-              {category.label}
-              <Badge 
-                variant={activeCategory === category.id ? "outline" : "default"}
-                size="sm"
-                className={activeCategory === category.id ? "bg-white/20 text-white border-white/30" : ""}
+        {/* Platform Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {socialPlatforms.map((platform, index) => {
+            const IconComponent = platform.icon;
+            return (
+              <div
+                key={platform.name}
+                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:-translate-y-2"
               >
-                {category.count}
-              </Badge>
-            </button>
-          ))}
-        </div>
+                {/* Card Header */}
+                <div className={`${platform.color} p-6 text-white relative overflow-hidden`}>
+                  <div className="absolute inset-0 bg-black/10"></div>
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                        <IconComponent className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold">{platform.name}</h3>
+                        <p className="text-white/80">{platform.accounts} Available</p>
+                      </div>
+                    </div>
+                    <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
+                      Popular
+                    </Badge>
+                  </div>
+                </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {filteredProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              {...product}
-              onBuyClick={(id) => console.log('Buy clicked for:', id)}
-              className="hover:scale-105 transition-transform duration-300"
-            />
-          ))}
-        </div>
+                {/* Card Content */}
+                <div className="p-6">
+                  <div className="mb-4">
+                    <div className="text-2xl font-bold text-gray-900 mb-2">
+                      {platform.price}
+                    </div>
+                    <div className="flex items-center space-x-1 text-yellow-500 mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-current" />
+                      ))}
+                      <span className="text-gray-600 text-sm ml-2">(4.9/5)</span>
+                    </div>
+                  </div>
 
-        {/* Load More Button */}
-        <div className="text-center">
-          <Button size="lg" variant="outline" className="shadow-lg hover:shadow-xl">
-            Load More Accounts
-          </Button>
-          <p className="text-sm text-gray-500 mt-4">
-            Showing {filteredProducts.length} of {categories.find(c => c.id === activeCategory)?.count || 0} accounts
-          </p>
+                  <ul className="space-y-2 mb-6">
+                    {platform.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center space-x-2 text-gray-600">
+                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                        <span className="text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button 
+                    className="w-full group-hover:scale-105 transition-transform duration-200"
+                    variant="default"
+                  >
+                    View Accounts
+                  </Button>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Trust Indicators */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl">
-            <div className="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🛡️</span>
+        <div className="bg-white rounded-2xl shadow-lg p-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">100% Secure</h3>
+              <p className="text-gray-600">
+                All accounts are thoroughly verified and come with lifetime warranty
+              </p>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">100% Secure</h3>
-            <p className="text-gray-600">All accounts are verified and come with security guarantee</p>
-          </div>
-          
-          <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl">
-            <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">⚡</span>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Zap className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Instant Delivery</h3>
+              <p className="text-gray-600">
+                Get your account details within minutes of purchase completion
+              </p>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Instant Delivery</h3>
-            <p className="text-gray-600">Get your account details within minutes of purchase</p>
-          </div>
-          
-          <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl">
-            <div className="w-16 h-16 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🎯</span>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Star className="w-8 h-8 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Premium Quality</h3>
+              <p className="text-gray-600">
+                Hand-picked accounts with high engagement and authentic followers
+              </p>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">24/7 Support</h3>
-            <p className="text-gray-600">Round-the-clock customer support for all your needs</p>
           </div>
         </div>
       </div>

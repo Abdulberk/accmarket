@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button, Icon, Badge } from '@/components/atoms';
-import { SearchBar } from '@/components/molecules';
+import Button from '@/components/atoms/Button/Button';
+import Icon from '@/components/atoms/Icon/Icon';
+import Badge from '@/components/atoms/Badge/Badge';
+import SearchBar from '@/components/molecules/SearchBar/SearchBar';
 import { cn } from '@/lib/utils';
 
 interface HeroSectionProps {

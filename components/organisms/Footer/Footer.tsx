@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Icon } from '@/components/atoms';
+import Button from '@/components/atoms/Button/Button';
+import Icon from '@/components/atoms/Icon/Icon';
 import { cn } from '@/lib/utils';
 
 interface FooterProps {
@@ -90,7 +91,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
               </div>
             </div>
             <p className="text-gray-400 text-sm mb-6">
-              The world's most trusted marketplace for premium social media accounts. 
+              The world&apos;s most trusted marketplace for premium social media accounts.
               Secure, verified, and ready to use.
             </p>
             <div className="flex gap-3">

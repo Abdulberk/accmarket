@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button, Icon } from '@/components/atoms';
+import Button from '@/components/atoms/Button/Button';
+import Icon from '@/components/atoms/Icon/Icon';
 import { cn } from '@/lib/utils';
 
 interface NavigationItem {
