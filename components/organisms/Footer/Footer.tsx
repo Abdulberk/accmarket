@@ -138,9 +138,13 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
               {/* Company Info - Mobile */}
               <div className="text-center mb-8">
                 <div className="flex items-center justify-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <span className="text-white font-bold text-xl">A</span>
-                  </div>
+                  <Image
+                    src="/logo2.png"
+                    alt="AccsMarket Logo"
+                    width={48}
+                    height={48}
+                    className="w-12 h-12 object-contain"
+                  />
                   <div>
                     <h3 className="text-2xl font-medium" style={{ color: '#072C48' }}>AccsMarket</h3>
                     <p className="text-sm" style={{ color: '#2C3E43' }}>Premium Social Media Accounts</p>
@@ -295,7 +299,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
               {/* Copyright - Mobile */}
               <div className="text-center mt-8 pt-6 border-t border-gray-200">
                 <div className="text-xs font-medium" style={{ color: '#6B7280' }}>
-                  © 2024 AccsMarket. All rights reserved.
+                  © 2025 AccsMarket. All rights reserved.
                 </div>
               </div>
             </div>
@@ -308,9 +312,13 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
                 {/* Company Info - Desktop */}
                 <div className="lg:col-span-2">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                      <span className="text-white font-bold text-xl">A</span>
-                    </div>
+                    <Image
+                      src="/logo2.png"
+                      alt="AccsMarket Logo"
+                      width={48}
+                      height={48}
+                      className="w-12 h-12 object-contain"
+                    />
                     <div>
                       <h3 className="text-2xl font-medium" style={{ color: '#072C48' }}>AccsMarket</h3>
                       <p className="text-sm" style={{ color: '#2C3E43' }}>Premium Social Media Accounts</p>
@@ -415,7 +423,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
                     </div>
                   </div>
                   <div className="text-sm font-medium" style={{ color: '#6B7280' }}>
-                    © 2024 AccsMarket. All rights reserved.
+                    © 2025 AccsMarket. All rights reserved.
                   </div>
                 </div>
               </div>
