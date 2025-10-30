@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Button from "@/components/atoms/Button/Button";
 import Icon from "@/components/atoms/Icon/Icon";
@@ -169,17 +170,17 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       <div className="relative">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
           <div className="flex items-center justify-between h-14 sm:h-16">
-            {/* Mobile Optimized Logo */}
-            <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-              <div className="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-                <span className="text-white font-bold text-sm sm:text-lg">A</span>
-              </div>
-              <span className="text-lg sm:text-xl font-bold text-gray-900 hidden xs:block">
-                AccsMarket
-              </span>
-              <span className="text-lg sm:text-xl font-bold text-gray-900 xs:hidden">
-                Accs
-              </span>
+            {/* Logo Only */}
+            <Link href="/" className="flex items-center group">
+              <Image
+                src="/logo2.png"
+                alt="AccsMarket Logo"
+                width={115}
+                quality={100}
+                
+                height={60}
+                className="w-16 sm:w-20 h-16 sm:h-20 object-contain group-hover:scale-105 transition-transform"
+              />
             </Link>
 
             {/* Desktop Navigation */}
