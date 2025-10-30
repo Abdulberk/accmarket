@@ -23,9 +23,21 @@ import {
   FaSnapchatGhost,
   FaReddit,
   FaVk,
-  FaTiktok
+  FaTiktok,
+  FaDiscord,
+  FaPinterest,
+  FaQuora,
+  FaYelp,
+  FaYahoo,
+  FaMicrosoft
 } from "react-icons/fa";
-import { SiTelegram } from "react-icons/si";
+import {
+  SiTelegram,
+  SiOdnoklassniki,
+  SiProtonmail,
+  SiMaildotru
+} from "react-icons/si";
+import { Mail } from "lucide-react";
 
 const ProductShowcase: React.FC = () => {
   const [visiblePlatforms, setVisiblePlatforms] = useState(6);
@@ -129,6 +141,78 @@ const ProductShowcase: React.FC = () => {
       accounts: "7K+",
       price: "Starting from $28",
       features: ["High Karma", "Aged Accounts", "Subreddit Access"]
+    },
+    {
+      name: "Discord",
+      icon: FaDiscord,
+      color: "from-indigo-500 to-purple-600",
+      accounts: "6K+",
+      price: "Starting from $25",
+      features: ["Server Access", "Nitro Accounts", "Bot Integration"]
+    },
+    {
+      name: "Pinterest",
+      icon: FaPinterest,
+      color: "from-red-500 to-red-600",
+      accounts: "8K+",
+      price: "Starting from $30",
+      features: ["Business Accounts", "High Followers", "Board Access"]
+    },
+    {
+      name: "Quora",
+      icon: FaQuora,
+      color: "from-red-600 to-red-700",
+      accounts: "4K+",
+      price: "Starting from $26",
+      features: ["High Reputation", "Answer Views", "Topic Following"]
+    },
+    {
+      name: "Odnoklassniki",
+      icon: SiOdnoklassniki,
+      color: "from-orange-400 to-orange-500",
+      accounts: "5K+",
+      price: "Starting from $20",
+      features: ["Russian Network", "Active Friends", "Group Access"]
+    },
+    {
+      name: "Yelp",
+      icon: FaYelp,
+      color: "from-red-500 to-red-600",
+      accounts: "3K+",
+      price: "Starting from $35",
+      features: ["Business Reviews", "Elite Status", "Local Network"]
+    },
+    {
+      name: "Yahoo Mail",
+      icon: FaYahoo,
+      color: "from-purple-600 to-purple-700",
+      accounts: "12K+",
+      price: "Starting from $18",
+      features: ["Aged Accounts", "Recovery Set", "Clean History"]
+    },
+    {
+      name: "Hotmail",
+      icon: FaMicrosoft,
+      color: "from-blue-600 to-blue-700",
+      accounts: "10K+",
+      price: "Starting from $20",
+      features: ["Microsoft Account", "Outlook Access", "OneDrive Storage"]
+    },
+    {
+      name: "Mail.ru",
+      icon: SiMaildotru,
+      color: "from-blue-500 to-blue-600",
+      accounts: "8K+",
+      price: "Starting from $16",
+      features: ["Russian Email", "Cloud Storage", "Social Integration"]
+    },
+    {
+      name: "ProtonMail",
+      icon: SiProtonmail,
+      color: "from-purple-500 to-purple-600",
+      accounts: "2K+",
+      price: "Starting from $45",
+      features: ["Encrypted Email", "Privacy Focused", "Secure Communication"]
     }
   ];
 
