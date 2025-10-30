@@ -162,7 +162,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
+              <div className="w-10 h-10 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
                 <span className="text-white font-bold text-lg">A</span>
               </div>
               <span className="text-xl font-bold text-gray-900">
@@ -199,7 +199,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                         <span className={cn(
-                          "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 transition-all",
+                          "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-600 to-blue-600 transition-all",
                           isActive ? "w-full" : "w-0 group-hover:w-full"
                         )}></span>
                       </Link>
@@ -216,7 +216,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                               
                               {/* Compact Header Section */}
                               <div className="text-center mb-6">
-                                <h2 className="text-xl font-bold text-gray-900 mb-2">
+                                <h2 className="text-xl font-semibold mb-2" style={{ color: '#072C48' }}>
                                   Choose Your Platform
                                 </h2>
                                 <p className="text-gray-600 text-sm">
@@ -315,7 +315,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                   >
                     {item.label}
                     <span className={cn(
-                      "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 transition-all",
+                      "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-600 to-blue-600 transition-all",
                       isActive ? "w-full" : "w-0 group-hover:w-full"
                     )}></span>
                   </Link>
@@ -324,18 +324,19 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
             </nav>
 
             {/* Actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <Button
                 variant="ghost"
                 size="sm"
-                className="hidden sm:flex text-gray-600 hover:text-gray-900 hover:bg-gray-100/50"
+                className="hidden sm:flex font-medium px-4 py-2 rounded-full transition-all"
+                style={{ color: '#072C48' }}
               >
-                <Icon name="user" size="sm" />
-                <span className="ml-1.5">Sign in</span>
+                Sign in
               </Button>
               <Button
                 size="sm"
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-md hover:shadow-lg transition-all"
+                className="font-medium px-6 py-2 rounded-full text-white shadow-sm hover:shadow-md transition-all"
+                style={{ backgroundColor: '#072C48' }}
               >
                 Get started
               </Button>
