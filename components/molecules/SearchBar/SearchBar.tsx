@@ -167,7 +167,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       >
         <div className={cn(
           "relative overflow-hidden rounded-xl transition-all duration-300",
-          isHero && "bg-white border border-gray-200 shadow-sm hover:shadow-md",
+          isHero && "bg-white border border-gray-200",
           isHero && isFocused && "ring-2 ring-gray-900 ring-opacity-20 border-gray-900"
         )}>
           {/* Search Icon */}
@@ -209,7 +209,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
             )}
             disabled={!query.trim()}
           >
-            {size === "lg" ? "Search" : <Icon name="arrow-right" size="sm" />}
+            <Icon name="search" size="sm" />
           </Button>
         </div>
 
@@ -271,7 +271,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                     if (onSearch) onSearch(item.text);
                   }}
                   className={cn(
-                    "flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-600 transition-all hover:shadow-sm",
+                    "flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-600 transition-all",
                     item.color
                   )}
                 >

@@ -4,6 +4,7 @@ import Icon from "@/components/atoms/Icon/Icon";
 import Badge from "@/components/atoms/Badge/Badge";
 import SearchBar from "@/components/molecules/SearchBar/SearchBar";
 import { cn } from "@/lib/utils";
+import { ArrowRight, MoveRight, ArrowUpRight, TrendingUp, Check } from "lucide-react";
 
 interface HeroSectionProps {
   className?: string;
@@ -36,7 +37,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
           {/* Badge */}
           <div className="flex justify-center mb-6">
             <div className="p-1 rounded-full bg-white border border-gray-200">
-              <div className="inline-flex items-center px-2 py-1 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
                 <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#C7FFFF' }}>
                   <svg className="w-4 h-4" fill="#39B9EB" viewBox="0 0 20 20">
                     <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
@@ -56,8 +57,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
           </h1>
 
           {/* Subheading */}
-          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Get verified social media accounts instantly. 
+          <p className="text-xl mb-12 max-w-3xl mx-auto leading-relaxed" style={{ color: '#2C3E43' }}>
+            Get verified social media accounts instantly.
             Secure, authentic, and ready to use.
           </p>
 
@@ -74,21 +75,24 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-32">
             <Button
-              size="lg"
-              className="text-white px-12 py-5 text-lg rounded-2xl transition-all"
+              size="custom"
+              customPadding="py-6 pl-10 pr-8 text-lg rounded-3xl font-light"
+              className="text-white transition-all"
               style={{ backgroundColor: '#073049' }}
             >
-              Get the best deals first
+              Explore All Accounts
               <Icon name="arrow-right" size="sm" className="ml-2" />
             </Button>
             <Button
-              variant="outline"
-              size="lg"
-              className="border-2 px-12 py-5 text-lg hover:bg-gray-50 transition-all rounded-2xl"
+              size="custom"
+              customPadding="py-6 pl-8 pr-10 text-lg rounded-3xl font-medium"
+              className="transition-all"
+              style={{ backgroundColor: '#DAF3FF', color: '#052A42' }}
             >
-              <Icon name="arrow-right" size="sm" className="mr-2" />
-              Watch Demo
+              <Check className="w-5 h-5 mr-2" />
+              Easy Purchase
             </Button>
+           
           </div>
 
           {/* Stats Cards */}
