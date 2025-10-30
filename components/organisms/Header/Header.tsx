@@ -204,92 +204,108 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                         )}></span>
                       </Link>
                       
-                      {/* Modern Dribbble-Style Mega Menu */}
+                      {/* Modern Revized Mega Menu */}
                       {isCategoriesOpen && (
-                        <div 
+                        <div
                           className="fixed inset-x-0 top-16 z-50"
                           onMouseEnter={() => setIsCategoriesOpen(true)}
                           onMouseLeave={() => setIsCategoriesOpen(false)}
                         >
                           <div className="bg-white/95 backdrop-blur-xl shadow-2xl border-b border-gray-100">
-                            <div className="max-w-5xl mx-auto px-4 py-5">
+                            <div className="max-w-6xl mx-auto px-6 py-8">
                               
-                              {/* Compact Header Section */}
-                              <div className="text-center mb-6">
-                                <h2 className="text-xl font-semibold mb-2" style={{ color: '#072C48' }}>
+                              {/* Enhanced Header Section */}
+                              <div className="text-center mb-10">
+                                <div className="flex justify-center mb-4">
+                                  <div className="p-1 rounded-full bg-white border border-gray-200">
+                                    <div className="inline-flex items-center px-4 py-2 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
+                                      <div className="w-6 h-6 rounded-full flex items-center justify-center mr-3" style={{ backgroundColor: '#C7FFFF' }}>
+                                        <svg className="w-4 h-4" fill="#39B9EB" viewBox="0 0 20 20">
+                                          <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                                        </svg>
+                                      </div>
+                                      Premium Social Media Accounts
+                                    </div>
+                                  </div>
+                                </div>
+                                <h2 className="text-3xl font-medium mb-3 tracking-tight" style={{ color: '#072C48' }}>
                                   Choose Your Platform
                                 </h2>
-                                <p className="text-gray-600 text-sm">
-                                  Premium verified accounts with instant delivery
+                                <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: '#2C3E43' }}>
+                                  Premium verified accounts with guaranteed quality and instant delivery
                                 </p>
                               </div>
 
-                              {/* Compact Grid Layout - 2 Rows x 3 Columns */}
-                              <div className="grid grid-cols-3 gap-4 mb-6">
+                              {/* Enhanced Grid Layout - 3 Rows x 3 Columns */}
+                              <div className="grid grid-cols-3 gap-6 mb-8">
                                 {categories.map((category) => (
                                   <div key={category.href} className="group">
-                                    {/* Ultra Compact Card Design */}
-                                    <div className="bg-gradient-to-br from-white to-gray-50/50 rounded-lg p-3 border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all duration-300">
+                                    {/* Enhanced Card Design */}
+                                    <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-200 transition-all duration-300 group-hover:-translate-y-1"
+                                         style={{
+                                           boxShadow: '0 4px 20px rgba(6, 182, 212, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)'
+                                         }}>
                                       
-                                      {/* Ultra Compact Header */}
-                                      <div className="flex items-center gap-2 mb-2">
+                                      {/* Enhanced Header */}
+                                      <div className="flex items-center gap-3 mb-4">
                                         <div
-                                          className="w-8 h-8 rounded-md flex items-center justify-center shadow-sm"
+                                          className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform"
                                           style={{
                                             backgroundColor: category.color,
-                                            boxShadow: `0 2px 8px ${category.color}30`
+                                            boxShadow: `0 4px 20px ${category.color}30`
                                           }}
                                         >
                                           <Icon
                                             name={category.icon}
-                                            size="xs"
+                                            size="sm"
                                             className="text-white"
                                           />
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                          <h3 className="text-sm font-bold text-gray-900 truncate">
+                                          <h3 className="text-lg font-semibold mb-1" style={{ color: '#072C48' }}>
                                             {category.name}
                                           </h3>
-                                          <p className="text-xs text-gray-500 truncate">
-                                            {category.description.split(' ').slice(0, 3).join(' ')}...
+                                          <p className="text-sm" style={{ color: '#2C3E43' }}>
+                                            {category.description}
                                           </p>
                                         </div>
-          
-          
                                       </div>
-                                      {/* Ultra Compact Subcategories */}
-                                      <div className="space-y-0.5 mb-2">
-                                        {category.subcategories.slice(0, 2).map((sub, index) => (
+
+                                      {/* Enhanced Subcategories */}
+                                      <div className="space-y-2 mb-4">
+                                        {category.subcategories.slice(0, 3).map((sub) => (
                                           <Link
                                             key={sub.href}
                                             href={sub.href}
-                                            className="flex items-center justify-between px-1.5 py-1 rounded hover:bg-white transition-all group/sub text-xs"
+                                            className="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-50 transition-all group/sub text-sm"
                                           >
-                                            <span className="text-gray-700 group-hover/sub:text-gray-900 font-medium truncate">
+                                            <span className="font-medium group-hover/sub:text-cyan-600" style={{ color: '#2C3E43' }}>
                                               {sub.name}
                                             </span>
-                                            <span className="text-gray-400 group-hover/sub:text-gray-600 text-xs ml-1">
+                                            <span className="text-gray-400 group-hover/sub:text-gray-600 text-xs">
                                               {Math.floor(Math.random() * 500) + 100}+
                                             </span>
                                           </Link>
                                         ))}
-                                        <div className="text-xs text-gray-500 px-1.5 py-0.5">
-                                          +{category.subcategories.length - 2} more
-                                        </div>
+                                        {category.subcategories.length > 3 && (
+                                          <div className="text-sm text-gray-500 px-3 py-1">
+                                            +{category.subcategories.length - 3} more categories
+                                          </div>
+                                        )}
                                       </div>
 
-                                      {/* Ultra Compact CTA */}
+                                      {/* Enhanced CTA */}
                                       <Link
                                         href={category.href}
-                                        className="w-full inline-flex items-center justify-center px-2 py-1.5 rounded font-medium text-xs transition-all"
+                                        className="w-full inline-flex items-center justify-center px-4 py-3 rounded-xl font-medium text-sm transition-all hover:shadow-md"
                                         style={{
                                           backgroundColor: `${category.color}15`,
                                           color: category.color,
                                           border: `1px solid ${category.color}30`
                                         }}
                                       >
-                                        View All
-                                        <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        View All {category.name}
+                                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                         </svg>
                                       </Link>
@@ -298,7 +314,21 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                                 ))}
                               </div>
 
-
+                              {/* Bottom CTA Section */}
+                              <div className="text-center pt-6 border-t border-gray-100">
+                                <p className="text-sm mb-4" style={{ color: '#2C3E43' }}>
+                                  Can&apos;t find what you&apos;re looking for?
+                                </p>
+                                <Button
+                                  size="custom"
+                                  customPadding="py-3 px-6 text-sm rounded-xl font-medium"
+                                  className="text-white transition-all"
+                                  style={{ backgroundColor: '#073049' }}
+                                >
+                                  Contact Support
+                                  <Icon name="arrow-right" size="sm" className="ml-2" />
+                                </Button>
+                              </div>
                             </div>
                           </div>
                         </div>

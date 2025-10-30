@@ -122,35 +122,35 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
           </div>
 
           {/* Social Media Platforms - Dribbble Style */}
-          <div className="mt-16 space-y-6">
-            <p className="text-sm text-gray-600 font-medium">
+          <div className="mt-16 space-y-8">
+            <p className="text-lg font-medium" style={{ color: '#072C48' }}>
               Providing reliable services for best platforms
             </p>
             
-            <div className="flex flex-wrap gap-4 justify-center max-w-2xl mx-auto">
+            <div className="flex flex-wrap gap-6 justify-center max-w-3xl mx-auto">
               <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #E4405F20' }}>
-                <Icon name="instagram" size="md" style={{ color: '#E4405F' }} />
+                <Icon name="instagram" size="lg" style={{ color: '#E4405F' }} />
               </div>
               <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1DA1F220' }}>
-                <Icon name="twitter" size="md" style={{ color: '#1DA1F2' }} />
+                <Icon name="twitter" size="lg" style={{ color: '#1DA1F2' }} />
               </div>
               <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF000020' }}>
-                <Icon name="youtube" size="md" style={{ color: '#FF0000' }} />
+                <Icon name="youtube" size="lg" style={{ color: '#FF0000' }} />
               </div>
               <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1877F220' }}>
-                <Icon name="facebook" size="md" style={{ color: '#1877F2' }} />
+                <Icon name="facebook" size="lg" style={{ color: '#1877F2' }} />
               </div>
               <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #00000020' }}>
-                <Icon name="tiktok" size="md" style={{ color: '#000000' }} />
+                <Icon name="tiktok" size="lg" style={{ color: '#000000' }} />
               </div>
               <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0088CC20' }}>
-                <Icon name="telegram" size="md" style={{ color: '#0088CC' }} />
+                <Icon name="telegram" size="lg" style={{ color: '#0088CC' }} />
               </div>
               <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0A66C220' }}>
-                <Icon name="linkedin" size="md" style={{ color: '#0A66C2' }} />
+                <Icon name="linkedin" size="lg" style={{ color: '#0A66C2' }} />
               </div>
               <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF450020' }}>
-                <Icon name="reddit" size="md" style={{ color: '#FF4500' }} />
+                <Icon name="reddit" size="lg" style={{ color: '#FF4500' }} />
               </div>
               <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg bg-gray-100 text-gray-400">
                 <span className="text-xl font-bold">•••</span>

@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@/components/atoms/Button/Button";
 import Icon from "@/components/atoms/Icon/Icon";
 import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
 
 interface FooterProps {
   className?: string;
@@ -51,10 +52,10 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
       <div className="absolute inset-0 bg-gradient-to-b from-purple-50/30 via-white to-white"></div>
       
       <div className="relative">
-        {/* Newsletter Section */}
-        <div className="py-24">
+        {/* Newsletter Section - Revized with new design principles */}
+        <div className="py-24 bg-gradient-to-b from-white via-cyan-50/20 to-blue-50/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative overflow-hidden bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-12 md:p-16">
+            <div className="relative overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-600 rounded-3xl p-12 md:p-16">
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute -top-24 -right-24 w-96 h-96 bg-white rounded-full blur-3xl"></div>
@@ -62,66 +63,77 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
               </div>
               
               {/* Content */}
-              <div className="relative max-w-3xl mx-auto text-center">
-                <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/20 text-white text-sm font-medium mb-6 backdrop-blur-sm">
-                  <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
-                  Join 10,000+ happy customers
+              <div className="relative max-w-4xl mx-auto text-center">
+                {/* Updated Badge */}
+                <div className="flex justify-center mb-8">
+                  <div className="p-1 rounded-full bg-white/20 border border-white/30 backdrop-blur-sm">
+                    <div className="inline-flex items-center px-4 py-2 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center mr-3" style={{ backgroundColor: '#C7FFFF' }}>
+                        <Check className="w-4 h-4" style={{ color: '#39B9EB' }} />
+                      </div>
+                      Join 10,000+ happy customers
+                    </div>
+                  </div>
                 </div>
                 
-                <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                <h3 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white mb-6 tracking-tight">
                   Get the best deals first
                 </h3>
-                <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
                   Subscribe to our newsletter and never miss exclusive offers and new account drops.
                 </p>
                 
-                <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                <form className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto mb-8">
                   <input
                     type="email"
                     placeholder="Enter your email address"
-                    className="flex-1 px-6 py-4 bg-white rounded-xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-white/30 shadow-lg"
+                    className="flex-1 px-6 py-4 bg-white/95 backdrop-blur-sm rounded-2xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-white/30 border border-white/20"
                   />
                   <Button
                     type="submit"
-                    size="lg"
-                    className="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-8 py-4 shadow-lg whitespace-nowrap"
+                    size="custom"
+                    customPadding="py-4 px-8 text-lg rounded-2xl font-medium"
+                    className="text-white transition-all whitespace-nowrap"
+                    style={{ backgroundColor: '#073049' }}
                   >
-                    Subscribe
+                    Subscribe Now
+                    <Icon name="arrow-right" size="sm" className="ml-2" />
                   </Button>
                 </form>
                 
-                <p className="mt-4 text-sm text-white/70">
-                  No spam, unsubscribe at any time.
-                </p>
+                <div className="flex items-center justify-center gap-2 text-sm text-white/80">
+                  <Check className="w-4 h-4 text-white" />
+                  <span>No spam, unsubscribe at any time</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Main Footer Content */}
-        <div className="bg-white py-16">
+        <div className="bg-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
               {/* Company Info */}
-              <div className="lg:col-span-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center shadow-md">
-                    <span className="text-white font-bold text-lg">A</span>
+              <div className="lg:col-span-2">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                    <span className="text-white font-bold text-xl">A</span>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900">AccsMarket</h3>
-                    <p className="text-xs text-gray-500">Premium Accounts</p>
+                    <h3 className="text-2xl font-medium" style={{ color: '#072C48' }}>AccsMarket</h3>
+                    <p className="text-sm" style={{ color: '#2C3E43' }}>Premium Social Media Accounts</p>
                   </div>
                 </div>
-                <p className="text-gray-600 text-sm mb-6">
-                  The world&apos;s most trusted marketplace for premium social media accounts.
+                <p className="text-base mb-8 max-w-md leading-relaxed" style={{ color: '#2C3E43' }}>
+                  The world&apos;s most trusted marketplace for premium, verified social media accounts with guaranteed quality and instant delivery.
                 </p>
-                <div className="flex gap-3">
+                <div className="flex gap-4">
                   {socialLinks.map((social) => (
                     <a
                       key={social.name}
                       href={social.href}
-                      className="w-10 h-10 bg-gray-100 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 rounded-lg flex items-center justify-center transition-all group"
+                      className="w-12 h-12 bg-gray-100 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 rounded-xl flex items-center justify-center transition-all group shadow-sm hover:shadow-md"
                       aria-label={social.name}
                     >
                       <Icon name={social.icon} size="sm" className="text-gray-600 group-hover:text-white" />
@@ -131,16 +143,17 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
               </div>
 
               {/* Links Columns */}
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:col-span-4 gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:col-span-3 gap-8">
                 {/* Products */}
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-4">Products</h4>
-                  <ul className="space-y-3">
+                  <h4 className="font-medium mb-6 text-lg" style={{ color: '#072C48' }}>Products</h4>
+                  <ul className="space-y-4">
                     {footerLinks.products.map((link) => (
                       <li key={link.href}>
                         <a
                           href={link.href}
-                          className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
+                          className="transition-colors text-sm hover:text-cyan-600"
+                          style={{ color: '#2C3E43' }}
                         >
                           {link.label}
                         </a>
@@ -151,13 +164,14 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
 
                 {/* Support */}
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-4">Support</h4>
-                  <ul className="space-y-3">
+                  <h4 className="font-medium mb-6 text-lg" style={{ color: '#072C48' }}>Support</h4>
+                  <ul className="space-y-4">
                     {footerLinks.support.map((link) => (
                       <li key={link.href}>
                         <a
                           href={link.href}
-                          className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
+                          className="transition-colors text-sm hover:text-cyan-600"
+                          style={{ color: '#2C3E43' }}
                         >
                           {link.label}
                         </a>
@@ -168,30 +182,14 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
 
                 {/* Company */}
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-4">Company</h4>
-                  <ul className="space-y-3">
+                  <h4 className="font-medium mb-6 text-lg" style={{ color: '#072C48' }}>Company</h4>
+                  <ul className="space-y-4">
                     {footerLinks.company.map((link) => (
                       <li key={link.href}>
                         <a
                           href={link.href}
-                          className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
-                        >
-                          {link.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Resources */}
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-4">Resources</h4>
-                  <ul className="space-y-3">
-                    {footerLinks.resources.map((link) => (
-                      <li key={link.href}>
-                        <a
-                          href={link.href}
-                          className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
+                          className="transition-colors text-sm hover:text-cyan-600"
+                          style={{ color: '#2C3E43' }}
                         >
                           {link.label}
                         </a>
@@ -203,23 +201,29 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
             </div>
 
             {/* Bottom Section */}
-            <div className="mt-12 pt-8 border-t border-gray-200">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div className="flex flex-wrap items-center gap-6">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Icon name="shield" size="sm" className="text-green-500" />
-                    <span>SSL Secured</span>
+            <div className="mt-16 pt-8 border-t" style={{ borderColor: '#E5E7EB' }}>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div className="flex flex-wrap items-center gap-8">
+                  <div className="flex items-center gap-3 text-sm" style={{ color: '#2C3E43' }}>
+                    <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                      <Icon name="shield" size="sm" className="text-green-600" />
+                    </div>
+                    <span className="font-medium">SSL Secured</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Icon name="check" size="sm" className="text-green-500" />
-                    <span>Verified Seller</span>
+                  <div className="flex items-center gap-3 text-sm" style={{ color: '#2C3E43' }}>
+                    <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                      <Icon name="check" size="sm" className="text-green-600" />
+                    </div>
+                    <span className="font-medium">Verified Seller</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Icon name="star" size="sm" className="text-yellow-500" />
-                    <span>4.9/5 Rating</span>
+                  <div className="flex items-center gap-3 text-sm" style={{ color: '#2C3E43' }}>
+                    <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                      <Icon name="star" size="sm" className="text-yellow-600" />
+                    </div>
+                    <span className="font-medium">4.9/5 Rating</span>
                   </div>
                 </div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm font-medium" style={{ color: '#6B7280' }}>
                   © 2024 AccsMarket. All rights reserved.
                 </div>
               </div>
