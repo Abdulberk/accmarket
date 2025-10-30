@@ -35,9 +35,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
         <div className="text-center">
           {/* Badge */}
           <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-100 to-blue-100 text-cyan-800 text-sm font-medium">
-              <span className="w-2 h-2 bg-cyan-600 rounded-full mr-2 animate-pulse"></span>
-              Trusted by 10,000+ customers
+            <div className="p-1 rounded-full bg-white border border-gray-200">
+              <div className="inline-flex items-center px-2 py-1 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
+                <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#C7FFFF' }}>
+                  <svg className="w-4 h-4" fill="#39B9EB" viewBox="0 0 20 20">
+                    <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
+                  </svg>
+                </div>
+                Trusted by 10,000+ customers
+              </div>
             </div>
           </div>
 
@@ -65,20 +71,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
             />
           </div>
 
-          {/* CTA Buttons - mb-20'yi mb-32'ye çıkardım */}
+          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-32">
             <Button
               size="lg"
-              className="text-white px-8 py-4 text-lg shadow-xl hover:shadow-2xl transition-all"
-              style={{ backgroundColor: '#072C48' }}
+              className="text-white px-12 py-5 text-lg rounded-2xl transition-all"
+              style={{ backgroundColor: '#073049' }}
             >
               Get the best deals first
               <Icon name="arrow-right" size="sm" className="ml-2" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-2 px-8 py-4 text-lg hover:bg-gray-50 transition-all"
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-2 px-12 py-5 text-lg hover:bg-gray-50 transition-all rounded-2xl"
             >
               <Icon name="arrow-right" size="sm" className="mr-2" />
               Watch Demo
@@ -118,32 +124,32 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
             </p>
             
             <div className="flex flex-wrap gap-4 justify-center max-w-2xl mx-auto">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #E4405F20' }}>
-                <Icon name="instagram" size="sm" style={{ color: '#E4405F' }} />
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #E4405F20' }}>
+                <Icon name="instagram" size="md" style={{ color: '#E4405F' }} />
               </div>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1DA1F220' }}>
-                <Icon name="twitter" size="sm" style={{ color: '#1DA1F2' }} />
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1DA1F220' }}>
+                <Icon name="twitter" size="md" style={{ color: '#1DA1F2' }} />
               </div>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF000020' }}>
-                <Icon name="youtube" size="sm" style={{ color: '#FF0000' }} />
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF000020' }}>
+                <Icon name="youtube" size="md" style={{ color: '#FF0000' }} />
               </div>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1877F220' }}>
-                <Icon name="facebook" size="sm" style={{ color: '#1877F2' }} />
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1877F220' }}>
+                <Icon name="facebook" size="md" style={{ color: '#1877F2' }} />
               </div>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #00000020' }}>
-                <Icon name="tiktok" size="sm" style={{ color: '#000000' }} />
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #00000020' }}>
+                <Icon name="tiktok" size="md" style={{ color: '#000000' }} />
               </div>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0088CC20' }}>
-                <Icon name="telegram" size="sm" style={{ color: '#0088CC' }} />
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0088CC20' }}>
+                <Icon name="telegram" size="md" style={{ color: '#0088CC' }} />
               </div>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0A66C220' }}>
-                <Icon name="linkedin" size="sm" style={{ color: '#0A66C2' }} />
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0A66C220' }}>
+                <Icon name="linkedin" size="md" style={{ color: '#0A66C2' }} />
               </div>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF450020' }}>
-                <Icon name="reddit" size="sm" style={{ color: '#FF4500' }} />
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF450020' }}>
+                <Icon name="reddit" size="md" style={{ color: '#FF4500' }} />
               </div>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg bg-gray-100 text-gray-400">
-                <span className="text-lg font-bold">•••</span>
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg bg-gray-100 text-gray-400">
+                <span className="text-xl font-bold">•••</span>
               </div>
             </div>
           </div>

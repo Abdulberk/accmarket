@@ -73,9 +73,17 @@ const ProductShowcase: React.FC = () => {
       <div className="container mx-auto px-4">
         {/* Enhanced Section Header */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-cyan-100 to-blue-100 text-cyan-800 text-sm font-medium mb-6">
-            <span className="w-2 h-2 bg-cyan-600 rounded-full mr-2 animate-pulse"></span>
-            Premium Social Media Accounts
+          <div className="flex justify-center mb-6">
+            <div className="p-1 rounded-full bg-white border border-gray-200">
+              <div className="inline-flex items-center px-2 py-1 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
+                <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#C7FFFF' }}>
+                  <svg className="w-4 h-4" fill="#39B9EB" viewBox="0 0 20 20">
+                    <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
+                  </svg>
+                </div>
+                Premium Social Media Accounts
+              </div>
+            </div>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-6 tracking-tight" style={{ color: '#072C48' }}>
             Choose Your Platform
@@ -156,9 +164,9 @@ const ProductShowcase: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* Enhanced CTA Button */}
+                  {/* CTA Button */}
                   <Button
-                    className="w-full text-white font-semibold py-3 rounded-xl transition-all duration-300 group-hover:shadow-lg"
+                    className="w-full text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 group-hover:shadow-lg"
                     style={{ backgroundColor: '#072C48' }}
                   >
                     View {platform.name} Accounts
@@ -186,9 +194,17 @@ const ProductShowcase: React.FC = () => {
             
             {/* Elegant Header Section */}
             <div className="text-center mb-20">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-cyan-100 to-blue-100 text-cyan-800 text-sm font-medium mb-8">
-                <span className="w-2 h-2 bg-cyan-600 rounded-full mr-2 animate-pulse"></span>
-                Why Choose AccsMarket
+              <div className="flex justify-center mb-8">
+                <div className="p-1 rounded-full bg-white border border-gray-200">
+                  <div className="inline-flex items-center px-2 py-1 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#C7FFFF' }}>
+                      <svg className="w-4 h-4" fill="#39B9EB" viewBox="0 0 20 20">
+                        <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
+                      </svg>
+                    </div>
+                    Why Choose AccsMarket
+                  </div>
+                </div>
               </div>
               <h3 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-8" style={{ color: '#072C48' }}>
                 The Most Trusted
