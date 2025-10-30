@@ -1,78 +1,79 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Button from '@/components/atoms/Button/Button';
-import Badge from '@/components/atoms/Badge/Badge';
-import {
-  Instagram,
-  Twitter,
-  Youtube,
-  Facebook,
-  Twitch,
+import React from "react";
+import Button from "@/components/atoms/Button/Button";
+import Badge from "@/components/atoms/Badge/Badge";
+import { 
+  Instagram, 
+  Twitter, 
+  Youtube, 
+  Facebook, 
+  Twitch, 
   Music,
   Star,
   Shield,
-  Zap
-} from 'lucide-react';
+  Zap,
+  CheckCircle
+} from "lucide-react";
 
 const ProductShowcase: React.FC = () => {
   const socialPlatforms = [
     {
-      name: 'Instagram',
+      name: "Instagram",
       icon: Instagram,
-      color: 'bg-gradient-to-r from-purple-500 to-pink-500',
-      accounts: '50K+',
-      price: 'Starting from $29',
-      features: ['Verified Accounts', 'High Engagement', 'Real Followers']
+      color: "from-purple-500 to-pink-500",
+      accounts: "50K+",
+      price: "Starting from $29",
+      features: ["Verified Accounts", "High Engagement", "Real Followers"]
     },
     {
-      name: 'Twitter',
+      name: "Twitter",
       icon: Twitter,
-      color: 'bg-gradient-to-r from-blue-400 to-blue-600',
-      accounts: '25K+',
-      price: 'Starting from $19',
-      features: ['Blue Verified', 'Active Users', 'Quality Content']
+      color: "from-blue-400 to-blue-600",
+      accounts: "25K+",
+      price: "Starting from $19",
+      features: ["Blue Verified", "Active Users", "Quality Content"]
     },
     {
-      name: 'YouTube',
+      name: "YouTube",
       icon: Youtube,
-      color: 'bg-gradient-to-r from-red-500 to-red-600',
-      accounts: '15K+',
-      price: 'Starting from $49',
-      features: ['Monetized Channels', 'Subscriber Base', 'Content Library']
+      color: "from-red-500 to-red-600",
+      accounts: "15K+",
+      price: "Starting from $49",
+      features: ["Monetized Channels", "Subscriber Base", "Content Library"]
     },
     {
-      name: 'Facebook',
+      name: "Facebook",
       icon: Facebook,
-      color: 'bg-gradient-to-r from-blue-600 to-blue-700',
-      accounts: '30K+',
-      price: 'Starting from $24',
-      features: ['Business Pages', 'Ad Accounts', 'Page Likes']
+      color: "from-blue-600 to-blue-700",
+      accounts: "30K+",
+      price: "Starting from $24",
+      features: ["Business Pages", "Ad Accounts", "Page Likes"]
     },
     {
-      name: 'Twitch',
+      name: "Twitch",
       icon: Twitch,
-      color: 'bg-gradient-to-r from-purple-600 to-purple-700',
-      accounts: '8K+',
-      price: 'Starting from $39',
-      features: ['Partner Status', 'Followers', 'Stream Setup']
+      color: "from-purple-600 to-purple-700",
+      accounts: "8K+",
+      price: "Starting from $39",
+      features: ["Partner Status", "Followers", "Stream Setup"]
     },
     {
-      name: 'TikTok',
+      name: "TikTok",
       icon: Music,
-      color: 'bg-gradient-to-r from-pink-500 to-red-500',
-      accounts: '20K+',
-      price: 'Starting from $34',
-      features: ['Creator Fund', 'Viral Content', 'Engagement']
+      color: "from-pink-500 to-red-500",
+      accounts: "20K+",
+      price: "Starting from $34",
+      features: ["Creator Fund", "Viral Content", "Engagement"]
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-20 bg-gradient-to-b from-white to-purple-50/30">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">
+          <Badge variant="secondary" className="mb-4 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-0">
             Premium Social Media Accounts
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -86,58 +87,47 @@ const ProductShowcase: React.FC = () => {
 
         {/* Platform Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {socialPlatforms.map((platform, index) => {
+          {socialPlatforms.map((platform) => {
             const IconComponent = platform.icon;
             return (
               <div
                 key={platform.name}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:-translate-y-2"
+                className="bg-white rounded-2xl p-1 shadow-lg hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2"
               >
-                {/* Card Header */}
-                <div className={`${platform.color} p-6 text-white relative overflow-hidden`}>
-                  <div className="absolute inset-0 bg-black/10"></div>
-                  <div className="relative z-10 flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold">{platform.name}</h3>
-                        <p className="text-white/80">{platform.accounts} Available</p>
-                      </div>
+                {/* Gradient Border */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${platform.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity blur`}></div>
+                
+                {/* Card Content */}
+                <div className="relative bg-white rounded-2xl p-6">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className={`w-14 h-14 bg-gradient-to-r ${platform.color} rounded-xl flex items-center justify-center text-white shadow-lg`}>
+                      <IconComponent className="w-7 h-7" />
                     </div>
-                    <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                      Popular
+                    <Badge variant="secondary" className="bg-gray-100 text-gray-700 border-0">
+                      {platform.accounts}
                     </Badge>
                   </div>
-                </div>
 
-                {/* Card Content */}
-                <div className="p-6">
-                  <div className="mb-4">
-                    <div className="text-2xl font-bold text-gray-900 mb-2">
-                      {platform.price}
-                    </div>
-                    <div className="flex items-center space-x-1 text-yellow-500 mb-3">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-current" />
-                      ))}
-                      <span className="text-gray-600 text-sm ml-2">(4.9/5)</span>
-                    </div>
-                  </div>
+                  {/* Platform Name & Price */}
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{platform.name}</h3>
+                  <p className={`text-xl font-semibold bg-gradient-to-r ${platform.color} bg-clip-text text-transparent mb-4`}>
+                    {platform.price}
+                  </p>
 
-                  <ul className="space-y-2 mb-6">
+                  {/* Features */}
+                  <ul className="space-y-3 mb-6">
                     {platform.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center space-x-2 text-gray-600">
-                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                      <li key={featureIndex} className="flex items-center gap-2 text-gray-600">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
                         <span className="text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
+                  {/* CTA Button */}
                   <Button 
-                    className="w-full group-hover:scale-105 transition-transform duration-200"
-                    variant="default"
+                    className={`w-full bg-gradient-to-r ${platform.color} hover:opacity-90 text-white transition-all`}
                   >
                     View Accounts
                   </Button>
@@ -148,36 +138,52 @@ const ProductShowcase: React.FC = () => {
         </div>
 
         {/* Trust Indicators */}
-        <div className="bg-white rounded-2xl shadow-lg p-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-8 h-8 text-green-600" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="group hover:-translate-y-1 transition-transform">
+            <div className="bg-white rounded-2xl border border-gray-100 p-6 h-full hover:shadow-lg transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-6 h-6 text-green-700" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Secure Checkout</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Verified accounts with lifetime warranty
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">100% Secure</h3>
-              <p className="text-gray-600">
-                All accounts are thoroughly verified and come with lifetime warranty
-              </p>
             </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-8 h-8 text-blue-600" />
+          </div>
+          
+          <div className="group hover:-translate-y-1 transition-transform">
+            <div className="bg-white rounded-2xl border border-gray-100 p-6 h-full hover:shadow-lg transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Zap className="w-6 h-6 text-blue-700" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Fast Delivery</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Account details sent within minutes
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Instant Delivery</h3>
-              <p className="text-gray-600">
-                Get your account details within minutes of purchase completion
-              </p>
             </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Star className="w-8 h-8 text-purple-600" />
+          </div>
+          
+          <div className="group hover:-translate-y-1 transition-transform">
+            <div className="bg-white rounded-2xl border border-gray-100 p-6 h-full hover:shadow-lg transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Star className="w-6 h-6 text-purple-700" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Premium Quality</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Hand-picked accounts with real engagement
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Premium Quality</h3>
-              <p className="text-gray-600">
-                Hand-picked accounts with high engagement and authentic followers
-              </p>
             </div>
           </div>
         </div>
