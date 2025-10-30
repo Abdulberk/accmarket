@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Button from "@/components/atoms/Button/Button";
 import Icon from "@/components/atoms/Icon/Icon";
 import Badge from "@/components/atoms/Badge/Badge";
@@ -27,8 +28,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
 
   return (
     <section className={cn("relative overflow-hidden", className)}>
-      {/* Modern Cyan/Blue Gradient Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-100">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="/tee.jpeg"
+          alt="Social media background"
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-30"
+          style={{ zIndex: -1 }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/80 via-blue-50/70 to-indigo-100/60"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent"></div>
       </div>
 
