@@ -15,7 +15,7 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
-  const [visiblePlatforms, setVisiblePlatforms] = useState(8);
+  const [visiblePlatforms, setVisiblePlatforms] = useState(9);
   const [isLoading, setIsLoading] = useState(false);
   
   const stats = [
@@ -45,11 +45,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
   ];
 
   const loadMorePlatforms = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setVisiblePlatforms(prev => Math.min(prev + 4, allPlatforms.length));
-      setIsLoading(false);
-    }, 800);
+    // Bu buton artık çalışmıyor - sadece görsel amaçlı
+    return;
   };
 
   const renderPlatformIcon = (platform: typeof allPlatforms[0]) => {
@@ -194,12 +191,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
 
           {/* Mobile Optimized Social Media Platforms */}
           <div className="mt-8 sm:mt-12 lg:mt-16 space-y-4 sm:space-y-6 lg:space-y-8 px-4">
-            <p className="text-base sm:text-lg font-medium" style={{ color: '#072C48' }}>
-              Providing reliable services for best platforms
-            </p>
+            <div className="text-center space-y-2">
+              <p className="text-base sm:text-lg font-medium" style={{ color: '#072C48' }}>
+                Providing reliable services for best platforms
+              </p>
+              <p className="text-xs sm:text-sm text-gray-500">
+                Supporting <span className="font-semibold text-cyan-600">15+</span> major platforms
+              </p>
+            </div>
             
             <div className="flex flex-wrap gap-3 sm:gap-4 lg:gap-6 justify-center max-w-4xl lg:max-w-5xl mx-auto">
-              {allPlatforms.slice(0, visiblePlatforms).map((platform, index) => (
+              {allPlatforms.slice(0, 9).map((platform, index) => (
                 <motion.div
                   key={platform.name}
                   initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -221,35 +223,19 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
                 </motion.div>
               ))}
               
-              {/* Load More Button */}
-              {visiblePlatforms < allPlatforms.length && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={loadMorePlatforms}
-                  className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all bg-gradient-to-br from-gray-50 to-gray-100 cursor-pointer group border-2 border-dashed border-gray-300 hover:border-cyan-400"
-                >
-                  {isLoading ? (
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="w-4 h-4 border-2 border-cyan-500 border-t-transparent rounded-full"
-                    />
-                  ) : (
-                    <span className="text-base sm:text-lg lg:text-xl font-bold text-gray-400 group-hover:text-cyan-500 transition-colors">+</span>
-                  )}
-                </motion.div>
-              )}
+              {/* Load More Button - Deaktif */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-gray-300 opacity-50 cursor-not-allowed"
+              >
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-gray-400">+</span>
+              </motion.div>
             </div>
             
             {/* Platform Stats */}
             <div className="text-center mt-6 sm:mt-8">
-              <p className="text-xs sm:text-sm text-gray-500 mb-2">
-                Supporting <span className="font-semibold text-cyan-600">15+</span> major platforms
-              </p>
               <div className="flex justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-400">
                 <span>• Instant Delivery</span>
                 <span>• 24/7 Support</span>

@@ -46,16 +46,13 @@ const TopBar: React.FC<TopBarProps> = ({ className }) => {
               </div>
 
               {/* Become a Seller CTA */}
-              <Link href="/seller/register">
-                <Button
-                  size="custom"
-                  customPadding="py-1.5 sm:py-2 px-3 sm:px-4 text-xs sm:text-sm rounded-lg font-medium"
-                  className="bg-white hover:bg-gray-50 text-cyan-600 border border-cyan-200 hover:border-cyan-300 transition-all duration-200 shadow-sm hover:shadow-md"
-                >
-                  <TrendingUp className="w-3 sm:w-4 h-3 sm:h-4 mr-1 sm:mr-2" />
-                  <span className="hidden sm:inline">Become a Seller</span>
-                  <span className="sm:hidden">Sell</span>
-                </Button>
+              <Link
+                href="/seller/register"
+                className="flex items-center gap-1 sm:gap-2 py-1.5 sm:py-2 px-3 sm:px-4 text-xs sm:text-sm rounded-lg font-medium bg-white hover:bg-gray-50 text-cyan-600 border border-cyan-200 hover:border-cyan-300 transition-all duration-200 shadow-sm hover:shadow-md"
+              >
+                <TrendingUp className="w-3 sm:w-4 h-3 sm:h-4" />
+                <span className="hidden sm:inline">Become a Seller</span>
+                <span className="sm:hidden">Sell</span>
               </Link>
             </div>
           </div>
