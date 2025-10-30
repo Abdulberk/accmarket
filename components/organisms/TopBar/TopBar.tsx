@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Button from "@/components/atoms/Button/Button";
 import Icon from "@/components/atoms/Icon/Icon";
+import { useThemeColors } from "@/components/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { Star, TrendingUp, Users, Shield } from "lucide-react";
 
@@ -12,10 +13,11 @@ interface TopBarProps {
 }
 
 const TopBar: React.FC<TopBarProps> = ({ className }) => {
+  const theme = useThemeColors();
   return (
     <div className={cn("w-full", className)}>
       {/* Main TopBar */}
-      <div className="bg-gradient-to-r from-cyan-50 via-blue-50 to-indigo-50 text-gray-700 border-b border-gray-100">
+      <div className="bg-gradient-to-r from-cyan-50/60 via-blue-50/40 to-cyan-50/60 text-gray-700 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-10 sm:h-12">
             {/* Left Side - Promotional Message */}
@@ -25,7 +27,7 @@ const TopBar: React.FC<TopBarProps> = ({ className }) => {
               </div>
               <span className="text-xs sm:text-sm font-medium text-gray-600">
                 <span className="hidden sm:inline">Special Launch Offer: </span>
-                <span className="font-semibold text-cyan-600">20% OFF</span>
+                <span className="font-semibold" style={{ color: theme.accent }}>20% OFF</span>
                 <span className="hidden md:inline"> on all premium accounts</span>
                 <span className="sm:hidden"> all accounts</span>
               </span>

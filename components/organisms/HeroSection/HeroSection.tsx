@@ -7,6 +7,7 @@ import Button from "@/components/atoms/Button/Button";
 import Icon from "@/components/atoms/Icon/Icon";
 import Badge from "@/components/atoms/Badge/Badge";
 import SearchBar from "@/components/molecules/SearchBar/SearchBar";
+import { useThemeColors } from "@/components/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { ArrowRight, MoveRight, ArrowUpRight, TrendingUp, Check } from "lucide-react";
 
@@ -17,6 +18,7 @@ interface HeroSectionProps {
 const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
   const [visiblePlatforms, setVisiblePlatforms] = useState(9);
   const [isLoading, setIsLoading] = useState(false);
+  const theme = useThemeColors();
   
   const stats = [
     { label: "Active Accounts", value: "50K+", icon: "user" as const },
@@ -105,9 +107,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
           {/* Mobile Optimized Badge */}
           <div className="flex justify-center mb-4 sm:mb-6">
             <div className="p-1 rounded-full bg-white border border-gray-200">
-              <div className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full bg-white text-xs sm:text-sm font-medium" style={{ color: '#3F5B6F' }}>
-                <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#C7FFFF' }}>
-                  <svg className="w-3 sm:w-4 h-3 sm:h-4" fill="#39B9EB" viewBox="0 0 20 20">
+              <div className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full bg-white text-xs sm:text-sm font-medium" style={{ color: theme.secondary }}>
+                <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: theme.accentLight }}>
+                  <svg className="w-3 sm:w-4 h-3 sm:h-4" fill={theme.accent} viewBox="0 0 20 20">
                     <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
                   </svg>
                 </div>
@@ -118,15 +120,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
           </div>
 
           {/* Mobile Optimized Main Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium mb-4 sm:mb-6 tracking-tight px-2" style={{ color: '#072C48' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium mb-4 sm:mb-6 tracking-tight px-2" style={{ color: theme.primary }}>
             <span className="block">Buy Premium</span>
-            <span className="block bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
+            <span
+              className="block bg-gradient-to-r bg-clip-text text-transparent"
+              style={{
+                backgroundImage: `linear-gradient(to right, ${theme.gradientFrom}, ${theme.gradientTo})`
+              }}
+            >
               Social Media Accounts
             </span>
           </h1>
 
           {/* Mobile Optimized Subheading */}
-          <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4" style={{ color: '#2C3E43' }}>
+          <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4" style={{ color: theme.textSecondary }}>
             Get verified social media accounts instantly.
             Secure, authentic, and ready to use.
           </p>
@@ -147,7 +154,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
               size="custom"
               customPadding="py-4 sm:py-6 pl-8 sm:pl-10 pr-6 sm:pr-8 text-base sm:text-lg rounded-2xl sm:rounded-3xl font-light"
               className="text-white transition-all w-full sm:w-auto"
-              style={{ backgroundColor: '#073049' }}
+              style={{ backgroundColor: theme.primaryDark }}
             >
               <span className="hidden sm:inline">Explore All Accounts</span>
               <span className="sm:hidden">Explore Accounts</span>
@@ -156,8 +163,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
             <Button
               size="custom"
               customPadding="py-4 sm:py-6 pl-6 sm:pl-8 pr-8 sm:pr-10 text-base sm:text-lg rounded-2xl sm:rounded-3xl font-medium"
-              className="transition-all w-full sm:w-auto"
-              style={{ backgroundColor: '#DAF3FF', color: '#052A42' }}
+              className="bg-white border-2 border-cyan-200 text-cyan-600 hover:bg-cyan-50 hover:border-cyan-300 transition-all w-full sm:w-auto"
             >
               <Check className="w-4 sm:w-5 h-4 sm:h-5 mr-2" />
               Easy Purchase
@@ -192,11 +198,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
           {/* Mobile Optimized Social Media Platforms */}
           <div className="mt-8 sm:mt-12 lg:mt-16 space-y-4 sm:space-y-6 lg:space-y-8 px-4">
             <div className="text-center space-y-2">
-              <p className="text-base sm:text-lg font-medium" style={{ color: '#072C48' }}>
+              <p className="text-base sm:text-lg font-medium" style={{ color: theme.primary }}>
                 Providing reliable services for best platforms
               </p>
               <p className="text-xs sm:text-sm text-gray-500">
-                Supporting <span className="font-semibold text-cyan-600">15+</span> major platforms
+                Supporting <span className="font-semibold" style={{ color: theme.accent }}>15+</span> major platforms
               </p>
             </div>
             
@@ -247,7 +253,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
       </div>
 
       {/* Bottom Decorative Element */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-200 to-transparent"></div>
+      <div
+        className="absolute bottom-0 left-0 right-0 h-px"
+        style={{
+          background: `linear-gradient(to right, transparent, ${theme.accent}40, transparent)`
+        }}
+      ></div>
     </section>
   );
 };

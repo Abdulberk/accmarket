@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Button from "@/components/atoms/Button/Button";
 import Badge from "@/components/atoms/Badge/Badge";
+import { useThemeColors } from "@/components/providers/ThemeProvider";
 import {
   Instagram,
   Twitter,
@@ -45,6 +46,7 @@ const ProductShowcase: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const loadMoreRef = useRef(null);
   const isLoadMoreInView = useInView(loadMoreRef);
+  const theme = useThemeColors();
 
   const allSocialPlatforms = [
     {
@@ -241,9 +243,9 @@ const ProductShowcase: React.FC = () => {
         <div className="text-center mb-20">
           <div className="flex justify-center mb-6">
             <div className="p-1 rounded-full bg-white border border-gray-200">
-              <div className="inline-flex items-center px-2 py-1 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
-                <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#C7FFFF' }}>
-                  <svg className="w-4 h-4" fill="#39B9EB" viewBox="0 0 20 20">
+              <div className="inline-flex items-center px-2 py-1 rounded-full bg-white text-sm font-medium" style={{ color: theme.secondary }}>
+                <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: theme.accentLight }}>
+                  <svg className="w-4 h-4" fill={theme.accent} viewBox="0 0 20 20">
                     <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
                   </svg>
                 </div>
@@ -251,10 +253,10 @@ const ProductShowcase: React.FC = () => {
               </div>
             </div>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-6 tracking-tight" style={{ color: '#072C48' }}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-6 tracking-tight" style={{ color: theme.primary }}>
             Choose Your Platform
           </h2>
-          <p className="text-xl max-w-4xl mx-auto leading-relaxed mb-8" style={{ color: '#2C3E43' }}>
+          <p className="text-xl max-w-4xl mx-auto leading-relaxed mb-8" style={{ color: theme.textSecondary }}>
             High-quality, verified social media accounts across all major platforms.
             Each account comes with our guarantee and 24/7 support.
           </p>
@@ -332,14 +334,14 @@ const ProductShowcase: React.FC = () => {
 
                   {/* Platform Name & Price */}
                   <div className="mb-6">
-                    <h3 className="text-xl font-semibold mb-2" style={{ color: '#072C48' }}>
+                    <h3 className="text-xl font-semibold mb-2" style={{ color: theme.primary }}>
                       {platform.name}
                     </h3>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-2xl font-bold" style={{ color: '#072C48' }}>
+                      <span className="text-2xl font-bold" style={{ color: theme.primary }}>
                         {platform.price.replace('From ', '')}
                       </span>
-                      <span className="text-sm text-gray-500">starting from</span>
+                      <span className="text-sm" style={{ color: theme.textMuted }}>starting from</span>
                     </div>
                   </div>
 
@@ -350,8 +352,8 @@ const ProductShowcase: React.FC = () => {
                         key={featureIndex}
                         className="flex items-start gap-3"
                       >
-                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-2 flex-shrink-0"></div>
-                        <span className="text-sm text-gray-600 leading-relaxed">{feature}</span>
+                        <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: theme.accent }}></div>
+                        <span className="text-sm leading-relaxed" style={{ color: theme.textSecondary }}>{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -364,16 +366,16 @@ const ProductShowcase: React.FC = () => {
                     <Button
                       className="w-full font-medium py-3 px-4 rounded-xl text-sm transition-all duration-300 group/btn"
                       style={{
-                        backgroundColor: '#072C48',
+                        backgroundColor: theme.primary,
                         color: 'white',
                         border: 'none'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#0A3A56';
+                        e.currentTarget.style.backgroundColor = theme.primaryLight;
                         e.currentTarget.style.transform = 'translateY(-1px)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = '#072C48';
+                        e.currentTarget.style.backgroundColor = theme.primary;
                         e.currentTarget.style.transform = 'translateY(0px)';
                       }}
                     >
@@ -386,7 +388,12 @@ const ProductShowcase: React.FC = () => {
                 </div>
 
                 {/* Subtle Background Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/50 to-blue-50/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                <div
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+                  style={{
+                    background: `linear-gradient(to bottom right, ${theme.accent}10, ${theme.gradientFrom}10)`
+                  }}
+                ></div>
               </motion.div>
             );
           })}
@@ -399,12 +406,14 @@ const ProductShowcase: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex items-center gap-3 text-cyan-600"
+                className="flex items-center gap-3"
+                style={{ color: theme.accent }}
               >
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  className="w-6 h-6 border-2 border-cyan-600 border-t-transparent rounded-full"
+                  className="w-6 h-6 border-2 border-t-transparent rounded-full"
+                  style={{ borderColor: theme.accent, borderTopColor: 'transparent' }}
                 />
                 <span className="text-lg font-medium">Loading more platforms...</span>
               </motion.div>
@@ -414,8 +423,8 @@ const ProductShowcase: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center"
               >
-                <div className="w-2 h-2 bg-cyan-500 rounded-full mx-auto mb-2"></div>
-                <p className="text-gray-500 text-sm">Scroll down to load more platforms</p>
+                <div className="w-2 h-2 rounded-full mx-auto mb-2" style={{ backgroundColor: theme.accent }}></div>
+                <p className="text-sm" style={{ color: theme.textMuted }}>Scroll down to load more platforms</p>
               </motion.div>
             )}
           </div>
@@ -434,9 +443,9 @@ const ProductShowcase: React.FC = () => {
             <div className="text-center mb-20">
               <div className="flex justify-center mb-8">
                 <div className="p-1 rounded-full bg-white border border-gray-200">
-                  <div className="inline-flex items-center px-2 py-1 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#C7FFFF' }}>
-                      <svg className="w-4 h-4" fill="#39B9EB" viewBox="0 0 20 20">
+                  <div className="inline-flex items-center px-2 py-1 rounded-full bg-white text-sm font-medium" style={{ color: theme.secondary }}>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: theme.accentLight }}>
+                      <svg className="w-4 h-4" fill={theme.accent} viewBox="0 0 20 20">
                         <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
                       </svg>
                     </div>
@@ -444,13 +453,18 @@ const ProductShowcase: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-8" style={{ color: '#072C48' }}>
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-8" style={{ color: theme.primary }}>
                 The Most Trusted
-                <span className="block bg-gradient-to-r from-cyan-600 to-blue-700 bg-clip-text text-transparent font-medium">
+                <span
+                  className="block bg-gradient-to-r bg-clip-text text-transparent font-medium"
+                  style={{
+                    backgroundImage: `linear-gradient(to right, ${theme.gradientFrom}, ${theme.gradientTo})`
+                  }}
+                >
                   Social Media Marketplace
                 </span>
               </h3>
-              <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: '#2C3E43' }}>
+              <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: theme.textSecondary }}>
                 Join thousands of satisfied customers who trust us for premium, verified social media accounts with guaranteed quality and instant delivery.
               </p>
             </div>
@@ -458,28 +472,28 @@ const ProductShowcase: React.FC = () => {
             {/* Elegant Stats Grid */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
               <div className="text-center group">
-                <div className="text-4xl lg:text-5xl font-light mb-2 group-hover:scale-105 transition-transform" style={{ color: '#072C48' }}>
+                <div className="text-4xl lg:text-5xl font-light mb-2 group-hover:scale-105 transition-transform" style={{ color: theme.primary }}>
                   50K+
                 </div>
-                <div className="text-cyan-600 font-medium">Active Accounts</div>
+                <div className="font-medium" style={{ color: theme.accent }}>Active Accounts</div>
               </div>
               <div className="text-center group">
-                <div className="text-4xl lg:text-5xl font-light mb-2 group-hover:scale-105 transition-transform" style={{ color: '#072C48' }}>
+                <div className="text-4xl lg:text-5xl font-light mb-2 group-hover:scale-105 transition-transform" style={{ color: theme.primary }}>
                   99.9%
                 </div>
-                <div className="text-blue-600 font-medium">Success Rate</div>
+                <div className="font-medium" style={{ color: theme.gradientFrom }}>Success Rate</div>
               </div>
               <div className="text-center group">
-                <div className="text-4xl lg:text-5xl font-light mb-2 group-hover:scale-105 transition-transform" style={{ color: '#072C48' }}>
+                <div className="text-4xl lg:text-5xl font-light mb-2 group-hover:scale-105 transition-transform" style={{ color: theme.primary }}>
                   10K+
                 </div>
-                <div className="text-cyan-700 font-medium">Happy Customers</div>
+                <div className="font-medium" style={{ color: theme.accentDark }}>Happy Customers</div>
               </div>
               <div className="text-center group">
-                <div className="text-4xl lg:text-5xl font-light mb-2 group-hover:scale-105 transition-transform" style={{ color: '#072C48' }}>
+                <div className="text-4xl lg:text-5xl font-light mb-2 group-hover:scale-105 transition-transform" style={{ color: theme.primary }}>
                   24/7
                 </div>
-                <div className="text-blue-700 font-medium">Support</div>
+                <div className="font-medium" style={{ color: theme.gradientTo }}>Support</div>
               </div>
             </div>
 
@@ -492,13 +506,13 @@ const ProductShowcase: React.FC = () => {
                   <div className="w-16 h-16 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <Shield className="w-8 h-8 text-cyan-600" />
                   </div>
-                  <h4 className="text-2xl font-medium mb-4" style={{ color: '#072C48' }}>
+                  <h4 className="text-2xl font-medium mb-4" style={{ color: theme.primary }}>
                     100% Secure & Verified
                   </h4>
-                  <p className="leading-relaxed mb-6 flex-grow" style={{ color: '#2C3E43' }}>
+                  <p className="leading-relaxed mb-6 flex-grow" style={{ color: theme.textSecondary }}>
                     Every account is thoroughly verified and comes with lifetime warranty. Your investment is protected with our replacement guarantee.
                   </p>
-                  <div className="flex items-center text-cyan-600 font-medium mt-auto">
+                  <div className="flex items-center font-medium mt-auto" style={{ color: theme.accent }}>
                     <CheckCircle className="w-5 h-5 mr-2" />
                     Lifetime Warranty Included
                   </div>
@@ -511,13 +525,13 @@ const ProductShowcase: React.FC = () => {
                   <div className="w-16 h-16 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <Zap className="w-8 h-8 text-cyan-600" />
                   </div>
-                  <h4 className="text-2xl font-medium mb-4" style={{ color: '#072C48' }}>
+                  <h4 className="text-2xl font-medium mb-4" style={{ color: theme.primary }}>
                     Lightning Fast Delivery
                   </h4>
-                  <p className="leading-relaxed mb-6 flex-grow" style={{ color: '#2C3E43' }}>
+                  <p className="leading-relaxed mb-6 flex-grow" style={{ color: theme.textSecondary }}>
                     Get instant access to your accounts within minutes. No waiting, no delays - just immediate delivery to your inbox.
                   </p>
-                  <div className="flex items-center text-cyan-600 font-medium mt-auto">
+                  <div className="flex items-center font-medium mt-auto" style={{ color: theme.accent }}>
                     <CheckCircle className="w-5 h-5 mr-2" />
                     Average Delivery: 2 Minutes
                   </div>
@@ -530,13 +544,13 @@ const ProductShowcase: React.FC = () => {
                   <div className="w-16 h-16 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <Star className="w-8 h-8 text-cyan-600" />
                   </div>
-                  <h4 className="text-2xl font-medium mb-4" style={{ color: '#072C48' }}>
+                  <h4 className="text-2xl font-medium mb-4" style={{ color: theme.primary }}>
                     Premium Quality Only
                   </h4>
-                  <p className="leading-relaxed mb-6 flex-grow" style={{ color: '#2C3E43' }}>
+                  <p className="leading-relaxed mb-6 flex-grow" style={{ color: theme.textSecondary }}>
                     Hand-picked accounts with real engagement, authentic followers, and proven track records. Quality you can trust.
                   </p>
-                  <div className="flex items-center text-cyan-600 font-medium mt-auto">
+                  <div className="flex items-center font-medium mt-auto" style={{ color: theme.accent }}>
                     <CheckCircle className="w-5 h-5 mr-2" />
                     99.9% Customer Satisfaction
                   </div>

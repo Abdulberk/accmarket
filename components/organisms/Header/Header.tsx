@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Button from "@/components/atoms/Button/Button";
 import Icon from "@/components/atoms/Icon/Icon";
+import { useThemeColors } from "@/components/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
 
 interface HeaderProps {
@@ -16,6 +17,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
   const pathname = usePathname();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const theme = useThemeColors();
   
   const navigationItems = [
     { label: "Home", href: "/" },
@@ -211,10 +213,15 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
-                        <span className={cn(
-                          "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-600 to-blue-600 transition-all",
-                          isActive ? "w-full" : "w-0 group-hover:w-full"
-                        )}></span>
+                        <span
+                          className={cn(
+                            "absolute -bottom-1 left-0 h-0.5 transition-all",
+                            isActive ? "w-full" : "w-0 group-hover:w-full"
+                          )}
+                          style={{
+                            background: `linear-gradient(to right, ${theme.gradientFrom}, ${theme.gradientTo})`
+                          }}
+                        ></span>
                       </Link>
                       
                       {/* Desktop Mega Menu */}
@@ -231,9 +238,9 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                               <div className="text-center mb-8 xl:mb-10">
                                 <div className="flex justify-center mb-3 xl:mb-4">
                                   <div className="p-1 rounded-full bg-white border border-gray-200">
-                                    <div className="inline-flex items-center px-3 xl:px-4 py-1 xl:py-2 rounded-full bg-white text-xs xl:text-sm font-medium" style={{ color: '#3F5B6F' }}>
-                                      <div className="w-5 xl:w-6 h-5 xl:h-6 rounded-full flex items-center justify-center mr-2 xl:mr-3" style={{ backgroundColor: '#C7FFFF' }}>
-                                        <svg className="w-3 xl:w-4 h-3 xl:h-4" fill="#39B9EB" viewBox="0 0 20 20">
+                                    <div className="inline-flex items-center px-3 xl:px-4 py-1 xl:py-2 rounded-full bg-white text-xs xl:text-sm font-medium" style={{ color: theme.secondary }}>
+                                      <div className="w-5 xl:w-6 h-5 xl:h-6 rounded-full flex items-center justify-center mr-2 xl:mr-3" style={{ backgroundColor: theme.accentLight }}>
+                                        <svg className="w-3 xl:w-4 h-3 xl:h-4" fill={theme.accent} viewBox="0 0 20 20">
                                           <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                                         </svg>
                                       </div>
@@ -241,10 +248,10 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                                     </div>
                                   </div>
                                 </div>
-                                <h2 className="text-2xl xl:text-3xl font-medium mb-2 xl:mb-3 tracking-tight" style={{ color: '#072C48' }}>
+                                <h2 className="text-2xl xl:text-3xl font-medium mb-2 xl:mb-3 tracking-tight" style={{ color: theme.primary }}>
                                   Choose Your Platform
                                 </h2>
-                                <p className="text-base xl:text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: '#2C3E43' }}>
+                                <p className="text-base xl:text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: theme.textSecondary }}>
                                   Premium verified accounts with guaranteed quality and instant delivery
                                 </p>
                               </div>
@@ -275,10 +282,10 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                                           />
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                          <h3 className="text-base xl:text-lg font-semibold mb-1" style={{ color: '#072C48' }}>
+                                          <h3 className="text-base xl:text-lg font-semibold mb-1" style={{ color: theme.primary }}>
                                             {category.name}
                                           </h3>
-                                          <p className="text-xs xl:text-sm" style={{ color: '#2C3E43' }}>
+                                          <p className="text-xs xl:text-sm" style={{ color: theme.textSecondary }}>
                                             {category.description}
                                           </p>
                                         </div>
@@ -292,7 +299,16 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                                             href={sub.href}
                                             className="flex items-center justify-between px-2 xl:px-3 py-1 xl:py-2 rounded-lg hover:bg-gray-50 transition-all group/sub text-xs xl:text-sm"
                                           >
-                                            <span className="font-medium group-hover/sub:text-cyan-600" style={{ color: '#2C3E43' }}>
+                                            <span
+                                              className="font-medium transition-colors"
+                                              style={{ color: theme.textSecondary }}
+                                              onMouseEnter={(e) => {
+                                                e.currentTarget.style.color = theme.accent;
+                                              }}
+                                              onMouseLeave={(e) => {
+                                                e.currentTarget.style.color = theme.textSecondary;
+                                              }}
+                                            >
                                               {sub.name}
                                             </span>
                                             <span className="text-gray-400 group-hover/sub:text-gray-600 text-xs">
@@ -329,14 +345,14 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
 
                               {/* Bottom CTA Section */}
                               <div className="text-center pt-4 xl:pt-6 border-t border-gray-100">
-                                <p className="text-xs xl:text-sm mb-3 xl:mb-4" style={{ color: '#2C3E43' }}>
+                                <p className="text-xs xl:text-sm mb-3 xl:mb-4" style={{ color: theme.textSecondary }}>
                                   Can&apos;t find what you&apos;re looking for?
                                 </p>
                                 <Button
                                   size="custom"
                                   customPadding="py-2 xl:py-3 px-4 xl:px-6 text-xs xl:text-sm rounded-lg xl:rounded-xl font-medium"
                                   className="text-white transition-all"
-                                  style={{ backgroundColor: '#073049' }}
+                                  style={{ backgroundColor: theme.primaryDark }}
                                 >
                                   Contact Support
                                   <Icon name="arrow-right" size="sm" className="ml-2" />
@@ -357,10 +373,15 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                     className="text-gray-600 hover:text-gray-900 font-medium text-sm xl:text-base transition-colors relative group"
                   >
                     {item.label}
-                    <span className={cn(
-                      "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-600 to-blue-600 transition-all",
-                      isActive ? "w-full" : "w-0 group-hover:w-full"
-                    )}></span>
+                    <span
+                      className={cn(
+                        "absolute -bottom-1 left-0 h-0.5 transition-all",
+                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      )}
+                      style={{
+                        background: `linear-gradient(to right, ${theme.gradientFrom}, ${theme.gradientTo})`
+                      }}
+                    ></span>
                   </Link>
                 );
               })}
@@ -372,14 +393,14 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                 variant="ghost"
                 size="sm"
                 className="font-medium px-3 xl:px-4 py-2 rounded-full transition-all text-sm xl:text-base"
-                style={{ color: '#072C48' }}
+                style={{ color: theme.primary }}
               >
                 Sign in
               </Button>
               <Button
                 size="sm"
                 className="font-medium px-4 xl:px-6 py-2 rounded-full text-white shadow-sm hover:shadow-md transition-all text-sm xl:text-base"
-                style={{ backgroundColor: '#072C48' }}
+                style={{ backgroundColor: theme.primary }}
               >
                 Get started
               </Button>
@@ -409,7 +430,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                 
                 {/* Mobile Categories Section */}
                 <div className="bg-gray-50 rounded-xl p-3 sm:p-4">
-                  <h4 className="font-semibold text-sm sm:text-base mb-3" style={{ color: '#072C48' }}>
+                  <h4 className="font-semibold text-sm sm:text-base mb-3" style={{ color: theme.primary }}>
                     Popular Platforms
                   </h4>
                   <div className="grid grid-cols-2 gap-2 sm:gap-3">
@@ -427,7 +448,18 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                           <Icon name={category.icon} size="sm" style={{ color: category.color }} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="font-medium text-gray-900 group-hover:text-cyan-600 transition-colors text-xs sm:text-sm truncate">
+                          <div
+                            className="font-medium text-gray-900 transition-colors text-xs sm:text-sm truncate"
+                            style={{
+                              color: theme.textPrimary
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.color = theme.accent;
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.color = theme.textPrimary;
+                            }}
+                          >
                             {category.name}
                           </div>
                           <div className="text-xs text-gray-500">
@@ -439,7 +471,14 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                   </div>
                   <Link 
                     href="/categories" 
-                    className="block text-center mt-3 py-2 text-cyan-600 hover:text-cyan-700 font-medium text-sm transition-colors"
+                    className="block text-center mt-3 py-2 font-medium text-sm transition-colors"
+                    style={{ color: theme.accent }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = theme.accentDark;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = theme.accent;
+                    }}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     View All Platforms →
@@ -452,7 +491,14 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="block px-3 sm:px-4 py-2 sm:py-3 text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-lg transition-colors text-sm sm:text-base font-medium"
+                      className="block px-3 sm:px-4 py-2 sm:py-3 hover:bg-gray-50 rounded-lg transition-colors text-sm sm:text-base font-medium"
+                      style={{ color: theme.textSecondary }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = theme.accent;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = theme.textSecondary;
+                      }}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.label}
@@ -466,14 +512,14 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                     variant="ghost" 
                     size="sm" 
                     className="justify-center text-sm sm:text-base font-medium"
-                    style={{ color: '#072C48' }}
+                    style={{ color: theme.primary }}
                   >
                     Sign in
                   </Button>
                   <Button 
                     size="sm"
                     className="text-white justify-center text-sm sm:text-base font-medium rounded-full"
-                    style={{ backgroundColor: '#072C48' }}
+                    style={{ backgroundColor: theme.primary }}
                   >
                     Get started
                   </Button>
