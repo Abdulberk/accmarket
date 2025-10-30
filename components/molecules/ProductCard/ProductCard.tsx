@@ -44,10 +44,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onBuyClick
 }) => {
   const platformIcons = {
-    facebook: 'facebook',
-    instagram: 'instagram',
-    twitter: 'twitter',
-    tiktok: 'user' // Using user as fallback for TikTok
+    facebook: 'facebook' as const,
+    instagram: 'instagram' as const,
+    twitter: 'twitter' as const,
+    tiktok: 'tiktok' as const
   };
 
   const platformColors = {

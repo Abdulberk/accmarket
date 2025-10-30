@@ -11,10 +11,10 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
   const stats = [
-    { label: "Active Accounts", value: "50K+", icon: "user" },
-    { label: "Happy Customers", value: "10K+", icon: "star" },
-    { label: "Success Rate", value: "99.9%", icon: "shield" },
-    { label: "Platforms", value: "15+", icon: "check" }
+    { label: "Active Accounts", value: "50K+", icon: "user" as const },
+    { label: "Happy Customers", value: "10K+", icon: "star" as const },
+    { label: "Success Rate", value: "99.9%", icon: "shield" as const },
+    { label: "Platforms", value: "15+", icon: "check" as const }
   ];
 
   const platforms = [
@@ -72,14 +72,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
               className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 text-lg shadow-xl hover:shadow-2xl transition-all"
             >
               Explore Accounts
-              <Icon name="arrow_right" size="sm" className="ml-2" />
+              <Icon name="arrow-right" size="sm" className="ml-2" />
             </Button>
             <Button 
               variant="outline" 
               size="lg" 
               className="border-2 px-8 py-4 text-lg hover:bg-gray-50 transition-all"
             >
-              <Icon name="arrow_right" size="sm" className="mr-2" />
+              <Icon name="arrow-right" size="sm" className="mr-2" />
               Watch Demo
             </Button>
           </div>

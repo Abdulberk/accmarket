@@ -40,9 +40,9 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
   };
 
   const socialLinks = [
-    { name: "Facebook", icon: "facebook", href: "#" },
-    { name: "Twitter", icon: "twitter", href: "#" },
-    { name: "Instagram", icon: "instagram", href: "#" }
+    { name: "Facebook", icon: "facebook" as const, href: "#" },
+    { name: "Twitter", icon: "twitter" as const, href: "#" },
+    { name: "Instagram", icon: "instagram" as const, href: "#" }
   ];
 
   return (
