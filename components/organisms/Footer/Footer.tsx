@@ -1,14 +1,27 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import Image from "next/image";
 import Button from "@/components/atoms/Button/Button";
 import Icon from "@/components/atoms/Icon/Icon";
 import { cn } from "@/lib/utils";
-import { Check } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 
 interface FooterProps {
   className?: string;
 }
 
 const Footer: React.FC<FooterProps> = ({ className }) => {
+  const [openSections, setOpenSections] = useState<string[]>([]);
+
+  const toggleSection = (section: string) => {
+    setOpenSections(prev => 
+      prev.includes(section) 
+        ? prev.filter(s => s !== section)
+        : [...prev, section]
+    );
+  };
+
   const footerLinks = {
     products: [
       { label: "Facebook Accounts", href: "/facebook" },
@@ -30,13 +43,6 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
       { label: "Terms of Service", href: "/terms" },
       { label: "Refund Policy", href: "/refund" },
       { label: "Affiliate Program", href: "/affiliate" }
-    ],
-    resources: [
-      { label: "Blog", href: "/blog" },
-      { label: "Success Stories", href: "/stories" },
-      { label: "API Documentation", href: "/api" },
-      { label: "Status Page", href: "/status" },
-      { label: "Changelog", href: "/changelog" }
     ]
   };
 
@@ -52,10 +58,21 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
       <div className="absolute inset-0 bg-gradient-to-b from-purple-50/30 via-white to-white"></div>
       
       <div className="relative">
-        {/* Newsletter Section - Revized with new design principles */}
-        <div className="py-24 bg-gradient-to-b from-white via-cyan-50/20 to-blue-50/30">
+        {/* Newsletter Section with Background Image */}
+        <div className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-white via-cyan-50/20 to-blue-50/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-600 rounded-3xl p-12 md:p-16">
+            <div className="relative overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl sm:rounded-3xl p-8 sm:p-12 md:p-16">
+              {/* Background Image with Next.js Image */}
+              <div className="absolute inset-0 opacity-15">
+                <Image 
+                  src="/social3.jpeg" 
+                  alt="Social media background" 
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+              
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute -top-24 -right-24 w-96 h-96 bg-white rounded-full blur-3xl"></div>
@@ -64,45 +81,48 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
               
               {/* Content */}
               <div className="relative max-w-4xl mx-auto text-center">
-                {/* Updated Badge */}
-                <div className="flex justify-center mb-8">
+                {/* Badge */}
+                <div className="flex justify-center mb-6 sm:mb-8">
                   <div className="p-1 rounded-full bg-white/20 border border-white/30 backdrop-blur-sm">
-                    <div className="inline-flex items-center px-4 py-2 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
-                      <div className="w-6 h-6 rounded-full flex items-center justify-center mr-3" style={{ backgroundColor: '#C7FFFF' }}>
-                        <Check className="w-4 h-4" style={{ color: '#39B9EB' }} />
+                    <div className="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 rounded-full bg-white text-xs sm:text-sm font-medium" style={{ color: '#3F5B6F' }}>
+                      <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full flex items-center justify-center mr-2 sm:mr-3" style={{ backgroundColor: '#C7FFFF' }}>
+                        <Check className="w-3 sm:w-4 h-3 sm:h-4" style={{ color: '#39B9EB' }} />
                       </div>
-                      Join 10,000+ happy customers
+                      <span className="hidden sm:inline">Join 10,000+ happy customers</span>
+                      <span className="sm:hidden">10K+ customers</span>
                     </div>
                   </div>
                 </div>
                 
-                <h3 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white mb-6 tracking-tight">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium text-white mb-4 sm:mb-6 tracking-tight px-4">
                   Get the best deals first
                 </h3>
-                <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-8 sm:mb-12 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4">
                   Subscribe to our newsletter and never miss exclusive offers and new account drops.
                 </p>
                 
-                <form className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto mb-8">
+                {/* Form */}
+                <form className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-xl sm:max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
                   <input
                     type="email"
                     placeholder="Enter your email address"
-                    className="flex-1 px-6 py-4 bg-white/95 backdrop-blur-sm rounded-2xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-white/30 border border-white/20"
+                    className="flex-1 px-4 sm:px-6 py-3 sm:py-4 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-white/30 border border-white/20 text-sm sm:text-base"
                   />
                   <Button
                     type="submit"
                     size="custom"
-                    customPadding="py-4 px-8 text-lg rounded-2xl font-medium"
-                    className="text-white transition-all whitespace-nowrap"
+                    customPadding="py-3 sm:py-4 px-6 sm:px-8 text-base sm:text-lg rounded-xl sm:rounded-2xl font-medium"
+                    className="text-white transition-all whitespace-nowrap w-full sm:w-auto"
                     style={{ backgroundColor: '#073049' }}
                   >
-                    Subscribe Now
+                    <span className="hidden sm:inline">Subscribe Now</span>
+                    <span className="sm:hidden">Subscribe</span>
                     <Icon name="arrow-right" size="sm" className="ml-2" />
                   </Button>
                 </form>
                 
-                <div className="flex items-center justify-center gap-2 text-sm text-white/80">
-                  <Check className="w-4 h-4 text-white" />
+                <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-white/80 px-4">
+                  <Check className="w-3 sm:w-4 h-3 sm:h-4 text-white flex-shrink-0" />
                   <span>No spam, unsubscribe at any time</span>
                 </div>
               </div>
@@ -110,13 +130,14 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
           </div>
         </div>
 
-        {/* Main Footer Content */}
-        <div className="bg-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-              {/* Company Info */}
-              <div className="lg:col-span-2">
-                <div className="flex items-center gap-3 mb-6">
+        {/* Footer Content */}
+        <div className="bg-white">
+          {/* Mobile Accordion Footer */}
+          <div className="block lg:hidden py-12">
+            <div className="max-w-7xl mx-auto px-4">
+              {/* Company Info - Mobile */}
+              <div className="text-center mb-8">
+                <div className="flex items-center justify-center gap-3 mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
                     <span className="text-white font-bold text-xl">A</span>
                   </div>
@@ -125,10 +146,12 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
                     <p className="text-sm" style={{ color: '#2C3E43' }}>Premium Social Media Accounts</p>
                   </div>
                 </div>
-                <p className="text-base mb-8 max-w-md leading-relaxed" style={{ color: '#2C3E43' }}>
-                  The world&apos;s most trusted marketplace for premium, verified social media accounts with guaranteed quality and instant delivery.
+                <p className="text-sm mb-6 leading-relaxed max-w-sm mx-auto" style={{ color: '#2C3E43' }}>
+                  The world&apos;s most trusted marketplace for premium, verified social media accounts.
                 </p>
-                <div className="flex gap-4">
+                
+                {/* Social Links - Mobile */}
+                <div className="flex justify-center gap-4 mb-8">
                   {socialLinks.map((social) => (
                     <a
                       key={social.name}
@@ -142,89 +165,258 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
                 </div>
               </div>
 
-              {/* Links Columns */}
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:col-span-3 gap-8">
-                {/* Products */}
-                <div>
-                  <h4 className="font-medium mb-6 text-lg" style={{ color: '#072C48' }}>Products</h4>
-                  <ul className="space-y-4">
-                    {footerLinks.products.map((link) => (
-                      <li key={link.href}>
-                        <a
-                          href={link.href}
-                          className="transition-colors text-sm hover:text-cyan-600"
-                          style={{ color: '#2C3E43' }}
-                        >
-                          {link.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+              {/* Accordion Sections */}
+              <div className="space-y-4">
+                {/* Products Accordion */}
+                <div className="border border-gray-200 rounded-xl overflow-hidden">
+                  <button
+                    onClick={() => toggleSection('products')}
+                    className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors"
+                  >
+                    <h4 className="font-semibold text-lg" style={{ color: '#072C48' }}>Products</h4>
+                    <ChevronDown 
+                      className={cn(
+                        "w-5 h-5 transition-transform",
+                        openSections.includes('products') && "rotate-180"
+                      )}
+                      style={{ color: '#072C48' }}
+                    />
+                  </button>
+                  {openSections.includes('products') && (
+                    <div className="p-4 bg-white border-t border-gray-200">
+                      <ul className="space-y-3">
+                        {footerLinks.products.map((link) => (
+                          <li key={link.href}>
+                            <a
+                              href={link.href}
+                              className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                            >
+                              <span className="text-sm font-medium group-hover:text-cyan-600" style={{ color: '#2C3E43' }}>
+                                {link.label}
+                              </span>
+                              <Icon name="arrow-right" size="sm" className="text-gray-400 group-hover:text-cyan-600" />
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
 
-                {/* Support */}
-                <div>
-                  <h4 className="font-medium mb-6 text-lg" style={{ color: '#072C48' }}>Support</h4>
-                  <ul className="space-y-4">
-                    {footerLinks.support.map((link) => (
-                      <li key={link.href}>
-                        <a
-                          href={link.href}
-                          className="transition-colors text-sm hover:text-cyan-600"
-                          style={{ color: '#2C3E43' }}
-                        >
-                          {link.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Support Accordion */}
+                <div className="border border-gray-200 rounded-xl overflow-hidden">
+                  <button
+                    onClick={() => toggleSection('support')}
+                    className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors"
+                  >
+                    <h4 className="font-semibold text-lg" style={{ color: '#072C48' }}>Support</h4>
+                    <ChevronDown 
+                      className={cn(
+                        "w-5 h-5 transition-transform",
+                        openSections.includes('support') && "rotate-180"
+                      )}
+                      style={{ color: '#072C48' }}
+                    />
+                  </button>
+                  {openSections.includes('support') && (
+                    <div className="p-4 bg-white border-t border-gray-200">
+                      <ul className="space-y-3">
+                        {footerLinks.support.map((link) => (
+                          <li key={link.href}>
+                            <a
+                              href={link.href}
+                              className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                            >
+                              <span className="text-sm font-medium group-hover:text-cyan-600" style={{ color: '#2C3E43' }}>
+                                {link.label}
+                              </span>
+                              <Icon name="arrow-right" size="sm" className="text-gray-400 group-hover:text-cyan-600" />
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
 
-                {/* Company */}
-                <div>
-                  <h4 className="font-medium mb-6 text-lg" style={{ color: '#072C48' }}>Company</h4>
-                  <ul className="space-y-4">
-                    {footerLinks.company.map((link) => (
-                      <li key={link.href}>
-                        <a
-                          href={link.href}
-                          className="transition-colors text-sm hover:text-cyan-600"
-                          style={{ color: '#2C3E43' }}
-                        >
-                          {link.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Company Accordion */}
+                <div className="border border-gray-200 rounded-xl overflow-hidden">
+                  <button
+                    onClick={() => toggleSection('company')}
+                    className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors"
+                  >
+                    <h4 className="font-semibold text-lg" style={{ color: '#072C48' }}>Company</h4>
+                    <ChevronDown 
+                      className={cn(
+                        "w-5 h-5 transition-transform",
+                        openSections.includes('company') && "rotate-180"
+                      )}
+                      style={{ color: '#072C48' }}
+                    />
+                  </button>
+                  {openSections.includes('company') && (
+                    <div className="p-4 bg-white border-t border-gray-200">
+                      <ul className="space-y-3">
+                        {footerLinks.company.map((link) => (
+                          <li key={link.href}>
+                            <a
+                              href={link.href}
+                              className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                            >
+                              <span className="text-sm font-medium group-hover:text-cyan-600" style={{ color: '#2C3E43' }}>
+                                {link.label}
+                              </span>
+                              <Icon name="arrow-right" size="sm" className="text-gray-400 group-hover:text-cyan-600" />
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Trust Indicators - Mobile */}
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                <div className="flex flex-col items-center p-4 bg-green-50 rounded-xl">
+                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mb-2">
+                    <Icon name="shield" size="sm" className="text-green-600" />
+                  </div>
+                  <span className="text-xs font-medium text-green-700">SSL Secured</span>
+                </div>
+                <div className="flex flex-col items-center p-4 bg-yellow-50 rounded-xl">
+                  <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mb-2">
+                    <Icon name="star" size="sm" className="text-yellow-600" />
+                  </div>
+                  <span className="text-xs font-medium text-yellow-700">4.9/5 Rating</span>
+                </div>
+              </div>
+
+              {/* Copyright - Mobile */}
+              <div className="text-center mt-8 pt-6 border-t border-gray-200">
+                <div className="text-xs font-medium" style={{ color: '#6B7280' }}>
+                  © 2024 AccsMarket. All rights reserved.
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Bottom Section */}
-            <div className="mt-16 pt-8 border-t" style={{ borderColor: '#E5E7EB' }}>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div className="flex flex-wrap items-center gap-8">
-                  <div className="flex items-center gap-3 text-sm" style={{ color: '#2C3E43' }}>
-                    <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                      <Icon name="shield" size="sm" className="text-green-600" />
+          {/* Desktop Footer Layout */}
+          <div className="hidden lg:block py-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+                {/* Company Info - Desktop */}
+                <div className="lg:col-span-2">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                      <span className="text-white font-bold text-xl">A</span>
                     </div>
-                    <span className="font-medium">SSL Secured</span>
+                    <div>
+                      <h3 className="text-2xl font-medium" style={{ color: '#072C48' }}>AccsMarket</h3>
+                      <p className="text-sm" style={{ color: '#2C3E43' }}>Premium Social Media Accounts</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3 text-sm" style={{ color: '#2C3E43' }}>
-                    <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                      <Icon name="check" size="sm" className="text-green-600" />
-                    </div>
-                    <span className="font-medium">Verified Seller</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm" style={{ color: '#2C3E43' }}>
-                    <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
-                      <Icon name="star" size="sm" className="text-yellow-600" />
-                    </div>
-                    <span className="font-medium">4.9/5 Rating</span>
+                  <p className="text-base mb-8 max-w-md leading-relaxed" style={{ color: '#2C3E43' }}>
+                    The world&apos;s most trusted marketplace for premium, verified social media accounts with guaranteed quality and instant delivery.
+                  </p>
+                  <div className="flex gap-4">
+                    {socialLinks.map((social) => (
+                      <a
+                        key={social.name}
+                        href={social.href}
+                        className="w-12 h-12 bg-gray-100 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 rounded-xl flex items-center justify-center transition-all group shadow-sm hover:shadow-md"
+                        aria-label={social.name}
+                      >
+                        <Icon name={social.icon} size="sm" className="text-gray-600 group-hover:text-white" />
+                      </a>
+                    ))}
                   </div>
                 </div>
-                <div className="text-sm font-medium" style={{ color: '#6B7280' }}>
-                  © 2024 AccsMarket. All rights reserved.
+
+                {/* Links Columns - Desktop */}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:col-span-3 gap-8">
+                  {/* Products */}
+                  <div>
+                    <h4 className="font-medium mb-6 text-lg" style={{ color: '#072C48' }}>Products</h4>
+                    <ul className="space-y-4">
+                      {footerLinks.products.map((link) => (
+                        <li key={link.href}>
+                          <a
+                            href={link.href}
+                            className="transition-colors text-sm hover:text-cyan-600"
+                            style={{ color: '#2C3E43' }}
+                          >
+                            {link.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Support */}
+                  <div>
+                    <h4 className="font-medium mb-6 text-lg" style={{ color: '#072C48' }}>Support</h4>
+                    <ul className="space-y-4">
+                      {footerLinks.support.map((link) => (
+                        <li key={link.href}>
+                          <a
+                            href={link.href}
+                            className="transition-colors text-sm hover:text-cyan-600"
+                            style={{ color: '#2C3E43' }}
+                          >
+                            {link.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Company */}
+                  <div>
+                    <h4 className="font-medium mb-6 text-lg" style={{ color: '#072C48' }}>Company</h4>
+                    <ul className="space-y-4">
+                      {footerLinks.company.map((link) => (
+                        <li key={link.href}>
+                          <a
+                            href={link.href}
+                            className="transition-colors text-sm hover:text-cyan-600"
+                            style={{ color: '#2C3E43' }}
+                          >
+                            {link.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Section - Desktop */}
+              <div className="mt-16 pt-8 border-t" style={{ borderColor: '#E5E7EB' }}>
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                  <div className="flex flex-wrap items-center gap-8">
+                    <div className="flex items-center gap-3 text-sm" style={{ color: '#2C3E43' }}>
+                      <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                        <Icon name="shield" size="sm" className="text-green-600" />
+                      </div>
+                      <span className="font-medium">SSL Secured</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm" style={{ color: '#2C3E43' }}>
+                      <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                        <Icon name="check" size="sm" className="text-green-600" />
+                      </div>
+                      <span className="font-medium">Verified Seller</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm" style={{ color: '#2C3E43' }}>
+                      <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                        <Icon name="star" size="sm" className="text-yellow-600" />
+                      </div>
+                      <span className="font-medium">4.9/5 Rating</span>
+                    </div>
+                  </div>
+                  <div className="text-sm font-medium" style={{ color: '#6B7280' }}>
+                    © 2024 AccsMarket. All rights reserved.
+                  </div>
                 </div>
               </div>
             </div>

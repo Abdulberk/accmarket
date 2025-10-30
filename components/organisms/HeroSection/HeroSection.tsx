@@ -32,128 +32,128 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-32">
         <div className="text-center">
-          {/* Badge */}
-          <div className="flex justify-center mb-6">
+          {/* Mobile Optimized Badge */}
+          <div className="flex justify-center mb-4 sm:mb-6">
             <div className="p-1 rounded-full bg-white border border-gray-200">
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
-                <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#C7FFFF' }}>
-                  <svg className="w-4 h-4" fill="#39B9EB" viewBox="0 0 20 20">
+              <div className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full bg-white text-xs sm:text-sm font-medium" style={{ color: '#3F5B6F' }}>
+                <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#C7FFFF' }}>
+                  <svg className="w-3 sm:w-4 h-3 sm:h-4" fill="#39B9EB" viewBox="0 0 20 20">
                     <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
                   </svg>
                 </div>
-                Trusted by 10,000+ customers
+                <span className="hidden sm:inline">Trusted by 10,000+ customers</span>
+                <span className="sm:hidden">10K+ customers</span>
               </div>
             </div>
           </div>
 
-          {/* Main Heading */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-medium mb-6 tracking-tight" style={{ color: '#072C48' }}>
-            Buy Premium
+          {/* Mobile Optimized Main Heading */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium mb-4 sm:mb-6 tracking-tight px-2" style={{ color: '#072C48' }}>
+            <span className="block">Buy Premium</span>
             <span className="block bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
               Social Media Accounts
             </span>
           </h1>
 
-          {/* Subheading */}
-          <p className="text-xl mb-12 max-w-3xl mx-auto leading-relaxed" style={{ color: '#2C3E43' }}>
+          {/* Mobile Optimized Subheading */}
+          <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4" style={{ color: '#2C3E43' }}>
             Get verified social media accounts instantly.
             Secure, authentic, and ready to use.
           </p>
 
-          {/* Search Bar */}
-          <div className="max-w-3xl mx-auto mb-8">
-            <SearchBar 
-              placeholder="Search Instagram, Twitter, TikTok accounts..." 
+          {/* Mobile Optimized Search Bar */}
+          <div className="max-w-2xl lg:max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
+            <SearchBar
+              placeholder="Search accounts..."
               variant="hero"
               size="lg"
               className="transform hover:scale-105 transition-transform duration-200"
             />
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-32">
+          {/* Mobile Optimized CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-16 sm:mb-24 lg:mb-32 px-4">
             <Button
               size="custom"
-              customPadding="py-6 pl-10 pr-8 text-lg rounded-3xl font-light"
-              className="text-white transition-all"
+              customPadding="py-4 sm:py-6 pl-8 sm:pl-10 pr-6 sm:pr-8 text-base sm:text-lg rounded-2xl sm:rounded-3xl font-light"
+              className="text-white transition-all w-full sm:w-auto"
               style={{ backgroundColor: '#073049' }}
             >
-              Explore All Accounts
+              <span className="hidden sm:inline">Explore All Accounts</span>
+              <span className="sm:hidden">Explore Accounts</span>
               <Icon name="arrow-right" size="sm" className="ml-2" />
             </Button>
             <Button
               size="custom"
-              customPadding="py-6 pl-8 pr-10 text-lg rounded-3xl font-medium"
-              className="transition-all"
+              customPadding="py-4 sm:py-6 pl-6 sm:pl-8 pr-8 sm:pr-10 text-base sm:text-lg rounded-2xl sm:rounded-3xl font-medium"
+              className="transition-all w-full sm:w-auto"
               style={{ backgroundColor: '#DAF3FF', color: '#052A42' }}
             >
-              <Check className="w-5 h-5 mr-2" />
+              <Check className="w-4 sm:w-5 h-4 sm:h-5 mr-2" />
               Easy Purchase
             </Button>
-           
           </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {/* Mobile Optimized Stats Cards */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 max-w-5xl mx-auto px-4 mb-12 sm:mb-16">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(6,182,212,0.12),0_2px_6px_rgba(0,0,0,0.08)]"
+                className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(6,182,212,0.12),0_2px_6px_rgba(0,0,0,0.08)]"
                 style={{
                   boxShadow: '0 4px 20px rgba(6, 182, 212, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)'
                 }}
               >
-                <div className="flex justify-center mb-3">
-                  <div className="w-12 h-12 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-xl flex items-center justify-center">
+                <div className="flex justify-center mb-2 sm:mb-3">
+                  <div className="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-lg sm:rounded-xl flex items-center justify-center">
                     <Icon name={stat.icon} size="sm" className="text-cyan-600" />
                   </div>
                 </div>
-                {/* Gradient text'i normal text-gray-900 ile değiştirdim */}
-                <div className="text-3xl font-bold text-gray-900 mb-1">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1">
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-600 font-medium">
+                <div className="text-xs sm:text-sm text-gray-600 font-medium">
                   {stat.label}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Social Media Platforms - Dribbble Style */}
-          <div className="mt-16 space-y-8">
-            <p className="text-lg font-medium" style={{ color: '#072C48' }}>
+          {/* Mobile Optimized Social Media Platforms */}
+          <div className="mt-8 sm:mt-12 lg:mt-16 space-y-4 sm:space-y-6 lg:space-y-8 px-4">
+            <p className="text-base sm:text-lg font-medium" style={{ color: '#072C48' }}>
               Providing reliable services for best platforms
             </p>
             
-            <div className="flex flex-wrap gap-6 justify-center max-w-3xl mx-auto">
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #E4405F20' }}>
-                <Icon name="instagram" size="lg" style={{ color: '#E4405F' }} />
+            <div className="flex flex-wrap gap-3 sm:gap-4 lg:gap-6 justify-center max-w-2xl lg:max-w-3xl mx-auto">
+              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #E4405F20' }}>
+                <Icon name="instagram" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#E4405F' }} />
               </div>
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1DA1F220' }}>
-                <Icon name="twitter" size="lg" style={{ color: '#1DA1F2' }} />
+              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1DA1F220' }}>
+                <Icon name="twitter" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#1DA1F2' }} />
               </div>
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF000020' }}>
-                <Icon name="youtube" size="lg" style={{ color: '#FF0000' }} />
+              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF000020' }}>
+                <Icon name="youtube" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#FF0000' }} />
               </div>
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1877F220' }}>
-                <Icon name="facebook" size="lg" style={{ color: '#1877F2' }} />
+              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #1877F220' }}>
+                <Icon name="facebook" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#1877F2' }} />
               </div>
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #00000020' }}>
-                <Icon name="tiktok" size="lg" style={{ color: '#000000' }} />
+              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #00000020' }}>
+                <Icon name="tiktok" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#000000' }} />
               </div>
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0088CC20' }}>
-                <Icon name="telegram" size="lg" style={{ color: '#0088CC' }} />
+              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0088CC20' }}>
+                <Icon name="telegram" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#0088CC' }} />
               </div>
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0A66C220' }}>
-                <Icon name="linkedin" size="lg" style={{ color: '#0A66C2' }} />
+              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #0A66C220' }}>
+                <Icon name="linkedin" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#0A66C2' }} />
               </div>
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF450020' }}>
-                <Icon name="reddit" size="lg" style={{ color: '#FF4500' }} />
+              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 bg-white" style={{ boxShadow: '0 4px 20px #FF450020' }}>
+                <Icon name="reddit" size="md" className="sm:!w-6 sm:!h-6 lg:!w-7 lg:!h-7" style={{ color: '#FF4500' }} />
               </div>
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg bg-gray-100 text-gray-400">
-                <span className="text-xl font-bold">•••</span>
+              <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg bg-gray-100 text-gray-400">
+                <span className="text-base sm:text-lg lg:text-xl font-bold">•••</span>
               </div>
             </div>
           </div>

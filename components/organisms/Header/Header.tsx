@@ -14,6 +14,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ className }) => {
   const pathname = usePathname();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const navigationItems = [
     { label: "Home", href: "/" },
@@ -151,6 +152,14 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     }
   ];
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    // Close categories menu when mobile menu opens
+    if (!isMobileMenuOpen) {
+      setIsCategoriesOpen(false);
+    }
+  };
+
   return (
     <header className={cn("sticky top-0 z-50 w-full", className)}>
       {/* Backdrop blur effect */}
@@ -158,20 +167,23 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       
       {/* Header content */}
       <div className="relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-                <span className="text-white font-bold text-lg">A</span>
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+          <div className="flex items-center justify-between h-14 sm:h-16">
+            {/* Mobile Optimized Logo */}
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
+              <div className="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
+                <span className="text-white font-bold text-sm sm:text-lg">A</span>
               </div>
-              <span className="text-xl font-bold text-gray-900">
+              <span className="text-lg sm:text-xl font-bold text-gray-900 hidden xs:block">
                 AccsMarket
+              </span>
+              <span className="text-lg sm:text-xl font-bold text-gray-900 xs:hidden">
+                Accs
               </span>
             </Link>
 
-            {/* Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
               {navigationItems.map((item) => {
                 const isActive = pathname === item.href || (item.hasSubmenu && pathname.startsWith(item.href));
                 
@@ -183,7 +195,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                     >
                       <Link
                         href={item.href}
-                        className="text-gray-600 hover:text-gray-900 font-medium text-sm transition-colors relative group flex items-center gap-1"
+                        className="text-gray-600 hover:text-gray-900 font-medium text-sm xl:text-base transition-colors relative group flex items-center gap-1"
                         onMouseEnter={() => setIsCategoriesOpen(true)}
                       >
                         {item.label}
@@ -204,23 +216,23 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                         )}></span>
                       </Link>
                       
-                      {/* Modern Revized Mega Menu */}
+                      {/* Desktop Mega Menu */}
                       {isCategoriesOpen && (
                         <div
-                          className="fixed inset-x-0 top-16 z-50"
+                          className="fixed inset-x-0 top-14 sm:top-16 z-50"
                           onMouseEnter={() => setIsCategoriesOpen(true)}
                           onMouseLeave={() => setIsCategoriesOpen(false)}
                         >
                           <div className="bg-white/95 backdrop-blur-xl shadow-2xl border-b border-gray-100">
-                            <div className="max-w-6xl mx-auto px-6 py-8">
+                            <div className="max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6 py-6 xl:py-8">
                               
                               {/* Enhanced Header Section */}
-                              <div className="text-center mb-10">
-                                <div className="flex justify-center mb-4">
+                              <div className="text-center mb-8 xl:mb-10">
+                                <div className="flex justify-center mb-3 xl:mb-4">
                                   <div className="p-1 rounded-full bg-white border border-gray-200">
-                                    <div className="inline-flex items-center px-4 py-2 rounded-full bg-white text-sm font-medium" style={{ color: '#3F5B6F' }}>
-                                      <div className="w-6 h-6 rounded-full flex items-center justify-center mr-3" style={{ backgroundColor: '#C7FFFF' }}>
-                                        <svg className="w-4 h-4" fill="#39B9EB" viewBox="0 0 20 20">
+                                    <div className="inline-flex items-center px-3 xl:px-4 py-1 xl:py-2 rounded-full bg-white text-xs xl:text-sm font-medium" style={{ color: '#3F5B6F' }}>
+                                      <div className="w-5 xl:w-6 h-5 xl:h-6 rounded-full flex items-center justify-center mr-2 xl:mr-3" style={{ backgroundColor: '#C7FFFF' }}>
+                                        <svg className="w-3 xl:w-4 h-3 xl:h-4" fill="#39B9EB" viewBox="0 0 20 20">
                                           <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                                         </svg>
                                       </div>
@@ -228,28 +240,28 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                                     </div>
                                   </div>
                                 </div>
-                                <h2 className="text-3xl font-medium mb-3 tracking-tight" style={{ color: '#072C48' }}>
+                                <h2 className="text-2xl xl:text-3xl font-medium mb-2 xl:mb-3 tracking-tight" style={{ color: '#072C48' }}>
                                   Choose Your Platform
                                 </h2>
-                                <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: '#2C3E43' }}>
+                                <p className="text-base xl:text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: '#2C3E43' }}>
                                   Premium verified accounts with guaranteed quality and instant delivery
                                 </p>
                               </div>
 
                               {/* Enhanced Grid Layout - 3 Rows x 3 Columns */}
-                              <div className="grid grid-cols-3 gap-6 mb-8">
+                              <div className="grid grid-cols-3 gap-4 xl:gap-6 mb-6 xl:mb-8">
                                 {categories.map((category) => (
                                   <div key={category.href} className="group">
                                     {/* Enhanced Card Design */}
-                                    <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-200 transition-all duration-300 group-hover:-translate-y-1"
+                                    <div className="bg-white rounded-xl xl:rounded-2xl p-4 xl:p-6 border border-gray-100 hover:border-gray-200 transition-all duration-300 group-hover:-translate-y-1"
                                          style={{
                                            boxShadow: '0 4px 20px rgba(6, 182, 212, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)'
                                          }}>
                                       
                                       {/* Enhanced Header */}
-                                      <div className="flex items-center gap-3 mb-4">
+                                      <div className="flex items-center gap-2 xl:gap-3 mb-3 xl:mb-4">
                                         <div
-                                          className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform"
+                                          className="w-10 xl:w-12 h-10 xl:h-12 rounded-lg xl:rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform"
                                           style={{
                                             backgroundColor: category.color,
                                             boxShadow: `0 4px 20px ${category.color}30`
@@ -262,33 +274,33 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                                           />
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                          <h3 className="text-lg font-semibold mb-1" style={{ color: '#072C48' }}>
+                                          <h3 className="text-base xl:text-lg font-semibold mb-1" style={{ color: '#072C48' }}>
                                             {category.name}
                                           </h3>
-                                          <p className="text-sm" style={{ color: '#2C3E43' }}>
+                                          <p className="text-xs xl:text-sm" style={{ color: '#2C3E43' }}>
                                             {category.description}
                                           </p>
                                         </div>
                                       </div>
 
                                       {/* Enhanced Subcategories */}
-                                      <div className="space-y-2 mb-4">
+                                      <div className="space-y-1 xl:space-y-2 mb-3 xl:mb-4">
                                         {category.subcategories.slice(0, 3).map((sub) => (
                                           <Link
                                             key={sub.href}
                                             href={sub.href}
-                                            className="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-50 transition-all group/sub text-sm"
+                                            className="flex items-center justify-between px-2 xl:px-3 py-1 xl:py-2 rounded-lg hover:bg-gray-50 transition-all group/sub text-xs xl:text-sm"
                                           >
                                             <span className="font-medium group-hover/sub:text-cyan-600" style={{ color: '#2C3E43' }}>
                                               {sub.name}
                                             </span>
                                             <span className="text-gray-400 group-hover/sub:text-gray-600 text-xs">
-                                              {Math.floor(Math.random() * 500) + 100}+
+                                              {200 + (category.subcategories.indexOf(sub) * 50)}+
                                             </span>
                                           </Link>
                                         ))}
                                         {category.subcategories.length > 3 && (
-                                          <div className="text-sm text-gray-500 px-3 py-1">
+                                          <div className="text-xs xl:text-sm text-gray-500 px-2 xl:px-3 py-1">
                                             +{category.subcategories.length - 3} more categories
                                           </div>
                                         )}
@@ -297,7 +309,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                                       {/* Enhanced CTA */}
                                       <Link
                                         href={category.href}
-                                        className="w-full inline-flex items-center justify-center px-4 py-3 rounded-xl font-medium text-sm transition-all hover:shadow-md"
+                                        className="w-full inline-flex items-center justify-center px-3 xl:px-4 py-2 xl:py-3 rounded-lg xl:rounded-xl font-medium text-xs xl:text-sm transition-all hover:shadow-md"
                                         style={{
                                           backgroundColor: `${category.color}15`,
                                           color: category.color,
@@ -305,7 +317,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                                         }}
                                       >
                                         View All {category.name}
-                                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-3 xl:w-4 h-3 xl:h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                         </svg>
                                       </Link>
@@ -315,13 +327,13 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                               </div>
 
                               {/* Bottom CTA Section */}
-                              <div className="text-center pt-6 border-t border-gray-100">
-                                <p className="text-sm mb-4" style={{ color: '#2C3E43' }}>
+                              <div className="text-center pt-4 xl:pt-6 border-t border-gray-100">
+                                <p className="text-xs xl:text-sm mb-3 xl:mb-4" style={{ color: '#2C3E43' }}>
                                   Can&apos;t find what you&apos;re looking for?
                                 </p>
                                 <Button
                                   size="custom"
-                                  customPadding="py-3 px-6 text-sm rounded-xl font-medium"
+                                  customPadding="py-2 xl:py-3 px-4 xl:px-6 text-xs xl:text-sm rounded-lg xl:rounded-xl font-medium"
                                   className="text-white transition-all"
                                   style={{ backgroundColor: '#073049' }}
                                 >
@@ -341,7 +353,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-gray-600 hover:text-gray-900 font-medium text-sm transition-colors relative group"
+                    className="text-gray-600 hover:text-gray-900 font-medium text-sm xl:text-base transition-colors relative group"
                   >
                     {item.label}
                     <span className={cn(
@@ -353,33 +365,121 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
               })}
             </nav>
 
-            {/* Actions */}
-            <div className="flex items-center gap-4">
+            {/* Desktop Actions */}
+            <div className="hidden lg:flex items-center gap-3 xl:gap-4">
               <Button
                 variant="ghost"
                 size="sm"
-                className="hidden sm:flex font-medium px-4 py-2 rounded-full transition-all"
+                className="font-medium px-3 xl:px-4 py-2 rounded-full transition-all text-sm xl:text-base"
                 style={{ color: '#072C48' }}
               >
                 Sign in
               </Button>
               <Button
                 size="sm"
-                className="font-medium px-6 py-2 rounded-full text-white shadow-sm hover:shadow-md transition-all"
+                className="font-medium px-4 xl:px-6 py-2 rounded-full text-white shadow-sm hover:shadow-md transition-all text-sm xl:text-base"
                 style={{ backgroundColor: '#072C48' }}
               >
                 Get started
               </Button>
-              {/* Mobile menu */}
-              <Button
-                variant="ghost"
-                size="sm"
-                className="md:hidden text-gray-600"
-              >
-                <Icon name="menu" size="sm" />
-              </Button>
             </div>
+
+            {/* Mobile menu button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="lg:hidden text-gray-600 p-2"
+              onClick={toggleMobileMenu}
+            >
+              {isMobileMenuOpen ? (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <Icon name="menu" size="sm" />
+              )}
+            </Button>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="lg:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md">
+              <div className="px-3 sm:px-4 py-4 space-y-4">
+                
+                {/* Mobile Categories Section */}
+                <div className="bg-gray-50 rounded-xl p-3 sm:p-4">
+                  <h4 className="font-semibold text-sm sm:text-base mb-3" style={{ color: '#072C48' }}>
+                    Popular Platforms
+                  </h4>
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                    {categories.slice(0, 6).map((category) => (
+                      <Link
+                        key={category.href}
+                        href={category.href}
+                        className="flex items-center space-x-2 p-2 sm:p-3 rounded-lg hover:bg-white transition-colors group"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <div 
+                          className="w-6 sm:w-8 h-6 sm:h-8 rounded-lg flex items-center justify-center shadow-sm"
+                          style={{ backgroundColor: `${category.color}15` }}
+                        >
+                          <Icon name={category.icon} size="sm" style={{ color: category.color }} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-gray-900 group-hover:text-cyan-600 transition-colors text-xs sm:text-sm truncate">
+                            {category.name}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {200 + (categories.indexOf(category) * 50)}+
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                  <Link 
+                    href="/categories" 
+                    className="block text-center mt-3 py-2 text-cyan-600 hover:text-cyan-700 font-medium text-sm transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    View All Platforms →
+                  </Link>
+                </div>
+
+                {/* Mobile Navigation Links */}
+                <nav className="space-y-1 sm:space-y-2">
+                  {navigationItems.filter(item => !item.hasSubmenu).map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block px-3 sm:px-4 py-2 sm:py-3 text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-lg transition-colors text-sm sm:text-base font-medium"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </nav>
+
+                {/* Mobile Actions */}
+                <div className="flex flex-col space-y-2 sm:space-y-3 pt-3 sm:pt-4 border-t border-gray-100">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="justify-center text-sm sm:text-base font-medium"
+                    style={{ color: '#072C48' }}
+                  >
+                    Sign in
+                  </Button>
+                  <Button 
+                    size="sm"
+                    className="text-white justify-center text-sm sm:text-base font-medium rounded-full"
+                    style={{ backgroundColor: '#072C48' }}
+                  >
+                    Get started
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </header>
