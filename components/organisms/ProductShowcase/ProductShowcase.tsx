@@ -15,7 +15,8 @@ import {
   Shield,
   Zap,
   CheckCircle,
-  Linkedin
+  Linkedin,
+  ArrowRight
 } from "lucide-react";
 import {
   FaTelegram,
@@ -51,7 +52,7 @@ const ProductShowcase: React.FC = () => {
       icon: Instagram,
       color: "from-purple-500 to-pink-500",
       accounts: "50K+",
-      price: "Starting from $29",
+      price: "From $29",
       features: ["Verified Accounts", "High Engagement", "Real Followers"]
     },
     {
@@ -59,7 +60,7 @@ const ProductShowcase: React.FC = () => {
       icon: Twitter,
       color: "from-blue-400 to-blue-600",
       accounts: "25K+",
-      price: "Starting from $19",
+      price: "From $19",
       features: ["Blue Verified", "Active Users", "Quality Content"]
     },
     {
@@ -67,7 +68,7 @@ const ProductShowcase: React.FC = () => {
       icon: Youtube,
       color: "from-red-500 to-red-600",
       accounts: "15K+",
-      price: "Starting from $49",
+      price: "From $49",
       features: ["Monetized Channels", "Subscriber Base", "Content Library"]
     },
     {
@@ -75,7 +76,7 @@ const ProductShowcase: React.FC = () => {
       icon: Facebook,
       color: "from-blue-600 to-blue-700",
       accounts: "30K+",
-      price: "Starting from $24",
+      price: "From $24",
       features: ["Business Pages", "Ad Accounts", "Page Likes"]
     },
     {
@@ -83,7 +84,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaTiktok,
       color: "from-pink-500 to-red-500",
       accounts: "20K+",
-      price: "Starting from $34",
+      price: "From $34",
       features: ["Creator Fund", "Viral Content", "Engagement"]
     },
     {
@@ -91,7 +92,7 @@ const ProductShowcase: React.FC = () => {
       icon: Twitch,
       color: "from-purple-600 to-purple-700",
       accounts: "8K+",
-      price: "Starting from $39",
+      price: "From $39",
       features: ["Partner Status", "Followers", "Stream Setup"]
     },
     {
@@ -99,7 +100,7 @@ const ProductShowcase: React.FC = () => {
       icon: Linkedin,
       color: "from-blue-500 to-blue-600",
       accounts: "12K+",
-      price: "Starting from $45",
+      price: "From $45",
       features: ["Premium Accounts", "Business Network", "Professional Content"]
     },
     {
@@ -107,7 +108,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaVk,
       color: "from-blue-500 to-blue-600",
       accounts: "18K+",
-      price: "Starting from $22",
+      price: "From $22",
       features: ["Russian Market", "Active Community", "High Engagement"]
     },
     {
@@ -115,7 +116,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaTelegram,
       color: "from-blue-400 to-blue-500",
       accounts: "15K+",
-      price: "Starting from $27",
+      price: "From $27",
       features: ["Premium Features", "Channel Access", "Bot Integration"]
     },
     {
@@ -123,7 +124,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaWhatsapp,
       color: "from-green-500 to-green-600",
       accounts: "10K+",
-      price: "Starting from $35",
+      price: "From $35",
       features: ["Business Accounts", "Verified Status", "API Access"]
     },
     {
@@ -131,7 +132,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaSnapchatGhost,
       color: "from-yellow-400 to-yellow-500",
       accounts: "9K+",
-      price: "Starting from $32",
+      price: "From $32",
       features: ["Creator Accounts", "Snap Ads", "Story Features"]
     },
     {
@@ -139,7 +140,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaReddit,
       color: "from-orange-500 to-red-500",
       accounts: "7K+",
-      price: "Starting from $28",
+      price: "From $28",
       features: ["High Karma", "Aged Accounts", "Subreddit Access"]
     },
     {
@@ -147,7 +148,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaDiscord,
       color: "from-indigo-500 to-purple-600",
       accounts: "6K+",
-      price: "Starting from $25",
+      price: "From $25",
       features: ["Server Access", "Nitro Accounts", "Bot Integration"]
     },
     {
@@ -155,7 +156,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaPinterest,
       color: "from-red-500 to-red-600",
       accounts: "8K+",
-      price: "Starting from $30",
+      price: "From $30",
       features: ["Business Accounts", "High Followers", "Board Access"]
     },
     {
@@ -163,7 +164,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaQuora,
       color: "from-red-600 to-red-700",
       accounts: "4K+",
-      price: "Starting from $26",
+      price: "From $26",
       features: ["High Reputation", "Answer Views", "Topic Following"]
     },
     {
@@ -171,7 +172,7 @@ const ProductShowcase: React.FC = () => {
       icon: SiOdnoklassniki,
       color: "from-orange-400 to-orange-500",
       accounts: "5K+",
-      price: "Starting from $20",
+      price: "From $20",
       features: ["Russian Network", "Active Friends", "Group Access"]
     },
     {
@@ -179,7 +180,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaYelp,
       color: "from-red-500 to-red-600",
       accounts: "3K+",
-      price: "Starting from $35",
+      price: "From $35",
       features: ["Business Reviews", "Elite Status", "Local Network"]
     },
     {
@@ -187,7 +188,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaYahoo,
       color: "from-purple-600 to-purple-700",
       accounts: "12K+",
-      price: "Starting from $18",
+      price: "From $18",
       features: ["Aged Accounts", "Recovery Set", "Clean History"]
     },
     {
@@ -195,7 +196,7 @@ const ProductShowcase: React.FC = () => {
       icon: FaMicrosoft,
       color: "from-blue-600 to-blue-700",
       accounts: "10K+",
-      price: "Starting from $20",
+      price: "From $20",
       features: ["Microsoft Account", "Outlook Access", "OneDrive Storage"]
     },
     {
@@ -203,7 +204,7 @@ const ProductShowcase: React.FC = () => {
       icon: SiMaildotru,
       color: "from-blue-500 to-blue-600",
       accounts: "8K+",
-      price: "Starting from $16",
+      price: "From $16",
       features: ["Russian Email", "Cloud Storage", "Social Integration"]
     },
     {
@@ -211,7 +212,7 @@ const ProductShowcase: React.FC = () => {
       icon: SiProtonmail,
       color: "from-purple-500 to-purple-600",
       accounts: "2K+",
-      price: "Starting from $45",
+      price: "From $45",
       features: ["Encrypted Email", "Privacy Focused", "Secure Communication"]
     }
   ];
@@ -276,7 +277,7 @@ const ProductShowcase: React.FC = () => {
         </div>
 
         {/* Enhanced Platform Grid with Framer Motion */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-20">
           {socialPlatforms.map((platform, index) => {
             const IconComponent = platform.icon;
             return (
@@ -289,87 +290,74 @@ const ProductShowcase: React.FC = () => {
                   delay: index * 0.1,
                   ease: "easeOut"
                 }}
-                whileHover={{
-                  y: -12,
-                  scale: 1.02,
-                  transition: { duration: 0.3 }
-                }}
                 className="group relative"
               >
                 {/* Enhanced Card with Better Shadow */}
-                <div className="bg-white rounded-3xl p-8 transition-all duration-500 border border-gray-100/50"
+                <div className="bg-white rounded-xl p-4 transition-all duration-500 border border-gray-100/50"
                      style={{
-                       boxShadow: '0 4px 20px rgba(6, 182, 212, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)'
+                       boxShadow: '0 2px 10px rgba(6, 182, 212, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03)'
                      }}>
                   
-                  {/* Enhanced Header */}
-                  <div className="flex items-center justify-between mb-8">
+                  {/* Compact Header */}
+                  <div className="flex flex-col items-center text-center mb-4">
                     <motion.div
-                      className={`w-16 h-16 bg-gradient-to-r ${platform.color} rounded-2xl flex items-center justify-center text-white shadow-lg`}
+                      className={`w-12 h-12 bg-gradient-to-r ${platform.color} rounded-xl flex items-center justify-center text-white shadow-md mb-3`}
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <IconComponent className="w-8 h-8" />
+                      <IconComponent className="w-6 h-6" />
                     </motion.div>
-                    <div className="text-right">
-                      <div className="text-sm text-gray-500 mb-1">Available</div>
-                      <div className="text-lg font-bold" style={{ color: '#072C48' }}>
-                        {platform.accounts}
-                      </div>
-                    </div>
+                    <div className="text-xs text-gray-500 mb-1">{platform.accounts}</div>
                   </div>
 
-                  {/* Enhanced Platform Info */}
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-semibold mb-2" style={{ color: '#072C48' }}>
+                  {/* Compact Platform Info */}
+                  <div className="mb-4 text-center">
+                    <h3 className="text-lg font-semibold mb-1 truncate" style={{ color: '#072C48' }}>
                       {platform.name}
                     </h3>
-                    <p className={`text-2xl font-bold bg-gradient-to-r ${platform.color} bg-clip-text text-transparent mb-3`}>
+                    <p className="text-sm font-bold mb-2" style={{ color: '#072C48' }}>
                       {platform.price}
                     </p>
-                    <div className="text-sm text-gray-500">
-                      Starting price • Instant delivery
-                    </div>
                   </div>
 
-                  {/* Enhanced Features */}
-                  <div className="space-y-3 mb-8">
+                  {/* Compact Features - Show all */}
+                  <div className="space-y-1 mb-4">
                     {platform.features.map((feature, featureIndex) => (
-                      <motion.div
+                      <div
                         key={featureIndex}
-                        className="flex items-center gap-3 text-gray-700"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 + featureIndex * 0.1 }}
+                        className="flex items-center gap-2 text-gray-600"
                       >
-                        <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                          <CheckCircle className="w-3 h-3 text-green-600" />
-                        </div>
-                        <span className="text-sm font-medium">{feature}</span>
-                      </motion.div>
+                        <CheckCircle className="w-3 h-3 text-green-600 flex-shrink-0" />
+                        <span className="text-xs truncate">{feature}</span>
+                      </div>
                     ))}
                   </div>
 
-                  {/* CTA Button */}
+                  {/* Compact CTA Button */}
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <Button
-                      className="w-full text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 group-hover:shadow-lg"
-                      style={{ backgroundColor: '#072C48' }}
+                      className="w-full font-medium py-2 px-3 rounded-lg text-sm transition-all duration-300 border-2"
+                      style={{
+                        color: '#072C48',
+                        borderColor: '#072C48',
+                        backgroundColor: 'transparent'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#072C48';
+                        e.currentTarget.style.color = 'white';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.color = '#072C48';
+                      }}
                     >
-                      View {platform.name} Accounts
-                      <motion.svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        whileHover={{ x: 4 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </motion.svg>
+                      <span className="flex items-center gap-1">
+                        View All
+                        <ArrowRight className="w-3 h-3" />
+                      </span>
                     </Button>
                   </motion.div>
                 </div>
